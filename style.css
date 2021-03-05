@@ -1,0 +1,38 @@
+* {
+    /* border: 1px dashed blue; */
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+
+body {
+    height: 100vh;
+    background: #e5ecf5;
+    font-family: '@Microsoft Yahei Ui Light';
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.player {
+    position: relative;
+    width: 350px;
+    height: 700px;
+    padding: 20px;
+    background: #fafafa;
+    border-radius: 40px;
+    overflow: hidden;
+}
+
+
+.cover {
+
+    border-radius: 40px;
+    overflow: hidden;
+
+}
+.cover img {
+    display: block;
+    width: 100%;
+}
