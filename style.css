@@ -15,19 +15,29 @@ body {
     align-items: center;
 }
 
+
 .player {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+
     position: relative;
     width: 350px;
     height: 700px;
     padding: 20px;
     background: #fafafa;
+    font-size: 26px;
+    text-align: center;
     border-radius: 40px;
     overflow: hidden;
 }
 
 
-.cover {
+.header {
+    
+}
 
+.cover {
     border-radius: 40px;
     overflow: hidden;
 
@@ -35,4 +45,33 @@ body {
 .cover img {
     display: block;
     width: 100%;
+    opacity: .9;
+}
+
+
+.artist small {
+    display: block;
+}
+
+.control {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+.button {
+    width: 60px;
+    height: 60px;
+    border-radius: 50px;
+    background: #e5ecf5;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+
+input#progress {
+    width: 100%;
+
 }

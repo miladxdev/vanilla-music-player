@@ -1,20 +1,47 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="app.js" defer></script>
     <title>Document</title>
 </head>
+
 <body>
     <div class="player">
+
+        <div class="header">
+
+        </div>
         <div class="cover">
             <img src="cover/Cover.jpg" alt="">
         </div>
-        <div class="tracks">
+        <div class="artist">
+            <small>Algorithm</small>
+            <small>Muse</small>
+        </div>
+        <div class="control">
+           <div class="button" id="back">
+                <i class="fa fa-back"></i>
+           </div>
+           <div class="button" id="play">
+            <i class="fa fa-play"></i>
+            </div>
+            <div class="button" id="next">
+                <i class="fa fa-next"></i>
+            </div>
+        </div>
 
+        <div class="progress">
+            <div class="slider-container">
+                <input type="range" id="progress" min="0" max="100">
+            </div>
         </div>
     </div>
 </body>
+
 </html>
