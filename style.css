@@ -22,10 +22,11 @@ body {
     justify-content: space-around;
 
     position: relative;
-    width: 350px;
-    height: 700px;
+    width: 320px;
+    height: 600px;
     padding: 20px;
     background: #fafafa;
+    box-shadow: 2px 2px 30px -8px #abb0b8;
     font-size: 26px;
     text-align: center;
     border-radius: 40px;
@@ -33,12 +34,12 @@ body {
 }
 
 
-.header {
+/* .header {
     
-}
+} */
 
 .cover {
-    border-radius: 40px;
+    border-radius: 20px;
     overflow: hidden;
 
 }
@@ -48,9 +49,18 @@ body {
     opacity: .9;
 }
 
-
-.artist small {
+.info {
+    margin-top: 10px;
+}
+.info small {
     display: block;
+}
+small#title {
+   letter-spacing: 2px;
+   color: rgb(182, 21, 82);
+}
+small#artist {
+    font-size: 18px;
 }
 
 .control {
@@ -70,8 +80,11 @@ body {
 }
 
 
-
 input#progress {
+    -webkit-appearance: none;
+    height: 10px;
+    outline: none;
+    background: #e5ecf5;
+    border-radius: 10px;
     width: 100%;
-
 }
