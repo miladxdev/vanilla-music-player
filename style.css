@@ -25,8 +25,13 @@ body {
     width: 320px;
     height: 600px;
     padding: 20px;
-    background: #fafafa;
-    box-shadow: 2px 2px 30px -8px #abb0b8;
+    background: hsl(0, 0%, 98%);
+    
+    box-shadow: 
+        0px 0px 30px -8px #bcc2cc,
+        8px 0 20px -10px hsl(0, 0%, 80%) inset,
+        -8px 0 20px -10px hsl(0, 0%, 80%) inset;
+
     font-size: 26px;
     text-align: center;
     border-radius: 40px;
@@ -34,14 +39,16 @@ body {
 }
 
 
-/* .header {
-    
-} */
+.header {
+    font-size: medium;
+    color: #333;
+}
+
+
 
 .cover {
     border-radius: 20px;
     overflow: hidden;
-
 }
 .cover img {
     display: block;
@@ -57,26 +64,43 @@ body {
 }
 small#title {
    letter-spacing: 2px;
-   color: rgb(182, 21, 82);
+   /* color: darkkhaki; */
+   /* text-shadow: 2px 2px 4px rgb(104, 99, 59); */
 }
 small#artist {
     font-size: 18px;
+    color: darkkhaki;
 }
 
 .control {
     display: flex;
     justify-content: space-around;
     align-items: center;
+
+    color: #333;
+    color: darkkhaki;
 }
 .button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
     width: 60px;
     height: 60px;
     border-radius: 50px;
     background: #e5ecf5;
+
     cursor: pointer;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    
+}
+.button#back i { transform: translateX(-15%); }
+.button#play i { transform: translateX(8%);   }
+.button#next i { transform: translateX(15%);  }
+
+.button.small {
+    width: 50px;
+    height: 50px;
+    font-size: medium;
 }
 
 
