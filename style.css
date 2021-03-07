@@ -100,7 +100,7 @@ small#artist {
 }
 
 .button#back i { transform: translateX(-15%); }
-.button#play i { transform: translateX(8%);   }
+/* .button#play i { transform: translateX(8%);   } */
 .button#next i { transform: translateX(15%);  }
 
 .button.small {
