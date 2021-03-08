@@ -18,46 +18,45 @@ let playList = [
 ];
 let track = 0;
 let nowPlaying = playList[track];
-console.log(nowPlaying);
 
-let song = new Audio('music/The Dark Side.mp3');
+let song = new Audio();
 
-
-
+// default tarck
+song.src = nowPlaying.src;
+currentSrc = nowPlaying.src;
+cover.src = nowPlaying.cover;
+title.innerHTML = nowPlaying.title;
+artist.innerHTML = nowPlaying.artist;
+// console.log(nowPlaying.src+"\n"+song.src); !!! not equal?
 function playSong() {
-    song.src = nowPlaying.src;
+    // change song.src if track has changed
+    if(currentSrc != nowPlaying.src) {
+        song.src = nowPlaying.src;
+        currentSrc = nowPlaying.src;
+    }
+    if (!isPlaying) {
     // update music info
     cover.src = nowPlaying.cover;
     title.innerHTML = nowPlaying.title;
     artist.innerHTML = nowPlaying.artist;
-   
-
-    if (!isPlaying) {
         song.play();
-        isPlaying = true;
-        duration = song.duration;
-         console.log(song.duration);
-        progress.max = duration;
+        // song.onloadeddata = function() {
+            duration = song.duration;
+            progress.max = duration;
+        // }
         playIcon.className = "fa fa-pause";
+        isPlaying = true;
     } else {
         song.pause();
-        isPlaying = false;
-
         playIcon.className = "fa fa-play";
+        isPlaying = false;
     }
 }
 
-// function nextSong() {
-//     track = 1;
-//     song.play();
-//     cover.src = nowPlaying.cover;
-//     title.innerHTML = nowPlaying.title;
-//     artist.innerHTML = nowPlaying.artist;
-// }
-
-
 playBtn.addEventListener("click", playSong);
-nextBtn.addEventListener("click", () => {
+
+
+nextBtn.addEventListener("click", function() {
     if (track == 0) {
         track = 1;
     } else {
@@ -65,6 +64,7 @@ nextBtn.addEventListener("click", () => {
     }
     nowPlaying = playList[track];
     isPlaying = false;
+
     playSong();
 });
 
@@ -82,6 +82,9 @@ progress.addEventListener("change", function() {
     song.currentTime = progress.value;
     
 });
+
+
+
 song.addEventListener("timeupdate", function() {
     if (touch == false) { // if user not clicking on [input:range] match song current time to [input:range] 
         progress.value = song.currentTime;
