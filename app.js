@@ -4,6 +4,9 @@ const title = document.getElementById('title');
 const artist = document.getElementById('artist');
 
 const progress = document.getElementById('progress');
+const timeLeft = document.getElementById('time-left');
+const timeRemain = document.getElementById('time-remain');
+
 const playBtn = document.getElementById('play');
 const playIcon = document.getElementById('play-icon');
 const nextBtn = document.getElementById('next');
@@ -16,8 +19,7 @@ let playList = [
     {title: 'The Dark side',   artist: 'Muse',                      src: 'music/The Dark Side.mp3',            cover: 'cover/simulation-theory.jpg'},
     {title: 'Time',            artist: 'Alan Walker & Hans Zimmer', src: 'music/Time (Alan Walker Remix).m4a', cover: 'cover/Time.jpg'},
     {title: 'Ghost',           artist: 'Au/Ra x Alan Walker',       src: 'music/Ghost.m4a',                    cover: 'cover/time-fall.jpg'},
-    {title: 'Never Fade Away', artist: 'Olga Jankowska',            src: 'music/Never Fade Away.mp3',          cover: 'cover/Cyberpunk.jpg'},
-    {title: 'Western Stars',   artist: 'Bruce Springsteen',         src: 'music/Western Stars.mp3',            cover: 'cover/Western Stars.jpg'}
+    {title: 'Never Fade Away', artist: 'Olga Jankowska',            src: 'music/Never Fade Away.mp3',          cover: 'cover/Cyberpunk.jpg'}
 ];
 let track = 0;
 let nowPlaying = playList[track];
@@ -25,17 +27,18 @@ let nowPlaying = playList[track];
 let song = new Audio();
 
 // default tarck
+song.volume = 0.4;
 song.src = nowPlaying.src;
 currentSrc = nowPlaying.src;
 cover.src = nowPlaying.cover;
 title.innerHTML = nowPlaying.title;
 artist.innerHTML = nowPlaying.artist;
 song.onloadeddata = function() {
-    duration = song.duration;
-    progress.max = duration;
-    console.log(duration);
+duration = song.duration;
+progress.max = duration;
+console.log(duration);
 }
-// console.log(nowPlaying.src+"\n"+song.src); !!! not equal?
+
 
 
 function playSong() {
@@ -44,11 +47,11 @@ function playSong() {
         song.src = nowPlaying.src;
         currentSrc = nowPlaying.src;
     }
-    song.onloadeddata = function() {
+    // song.onloadeddata = function() {
         duration = song.duration;
         progress.max = duration;
-        console.log(duration);
-    }
+        // console.log(duration);
+    // }
     if (!isPlaying) {
         // update music info
         song.play();
@@ -65,12 +68,13 @@ function playSong() {
     }
 }
 
+
 playBtn.addEventListener("click", playSong);
 
 
 nextBtn.addEventListener("click", function() {
     track ++;
-    if (track >= playList.length) track = 0;
+    if (track > playList.length-1) track = 0;
     
     nowPlaying = playList[track];
     isPlaying = false;
@@ -98,6 +102,8 @@ progress.addEventListener("change", function() {
 song.addEventListener("timeupdate", function() {
     if (touch == false) { // if user not clicking on [input:range] match song current time to [input:range] 
         progress.value = song.currentTime;
+        timeLeft.innerHTML = Math.floor(song.currentTime);
+        timeRemain.innerHTML = Math.floor(song.duration - song.currentTime);
     }
 });
 song.addEventListener("ended", function() {

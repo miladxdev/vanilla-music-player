@@ -48,8 +48,10 @@ body {
 
 .cover {
     border-radius: 20px;
+    box-shadow: 0 0 5px #e5ecf5;
     overflow: hidden;
 }
+
 .cover img {
     display: block;
     width: 100%;
