@@ -27,24 +27,33 @@ currentSrc = nowPlaying.src;
 cover.src = nowPlaying.cover;
 title.innerHTML = nowPlaying.title;
 artist.innerHTML = nowPlaying.artist;
+song.onloadeddata = function() {
+    duration = song.duration;
+    progress.max = duration;
+    console.log(duration);
+}
 // console.log(nowPlaying.src+"\n"+song.src); !!! not equal?
+
+
 function playSong() {
     // change song.src if track has changed
     if(currentSrc != nowPlaying.src) {
         song.src = nowPlaying.src;
         currentSrc = nowPlaying.src;
     }
+    song.onloadeddata = function() {
+        duration = song.duration;
+        progress.max = duration;
+        console.log(duration);
+    }
     if (!isPlaying) {
-    // update music info
-    cover.src = nowPlaying.cover;
-    title.innerHTML = nowPlaying.title;
-    artist.innerHTML = nowPlaying.artist;
+        // update music info
         song.play();
-        // song.onloadeddata = function() {
-            duration = song.duration;
-            progress.max = duration;
-        // }
+        cover.src = nowPlaying.cover;
+        title.innerHTML = nowPlaying.title;
+        artist.innerHTML = nowPlaying.artist;
         playIcon.className = "fa fa-pause";
+        
         isPlaying = true;
     } else {
         song.pause();
