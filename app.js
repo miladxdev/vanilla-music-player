@@ -13,8 +13,11 @@ let duration = 0;
 let currentTime = 0;
 
 let playList = [
-    {title: 'The Dark side', artist: 'Muse', album:'Simulation Theory', src: 'music/The Dark Side.mp3', cover: 'cover/simulation-theory.jpg'},
-    {title: 'Born to Die', artist: 'Lana Del Rey', album:'Born to Die', src: 'music/Born to Die.mp3', cover: 'cover/born-to-die.jpg'},
+    {title: 'The Dark side',   artist: 'Muse',                      src: 'music/The Dark Side.mp3',            cover: 'cover/simulation-theory.jpg'},
+    {title: 'Time',            artist: 'Alan Walker & Hans Zimmer', src: 'music/Time (Alan Walker Remix).m4a', cover: 'cover/Time.jpg'},
+    {title: 'Ghost',           artist: 'Au/Ra x Alan Walker',       src: 'music/Ghost.m4a',                    cover: 'cover/time-fall.jpg'},
+    {title: 'Never Fade Away', artist: 'Olga Jankowska',            src: 'music/Never Fade Away.mp3',          cover: 'cover/Cyberpunk.jpg'},
+    {title: 'Western Stars',   artist: 'Bruce Springsteen',         src: 'music/Western Stars.mp3',            cover: 'cover/Western Stars.jpg'}
 ];
 let track = 0;
 let nowPlaying = playList[track];
@@ -66,11 +69,9 @@ playBtn.addEventListener("click", playSong);
 
 
 nextBtn.addEventListener("click", function() {
-    if (track == 0) {
-        track = 1;
-    } else {
-        track = 0;
-    }
+    track ++;
+    if (track >= playList.length) track = 0;
+    
     nowPlaying = playList[track];
     isPlaying = false;
 
