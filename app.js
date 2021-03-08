@@ -98,12 +98,17 @@ progress.addEventListener("change", function() {
 });
 
 
+function secondsToMinutes(time) {
+    return Math.floor(time / 60).toString().padStart(2, '0') +':'+
+           Math.floor(time % 60).toString().padStart(2, '0');
+}
+
 
 song.addEventListener("timeupdate", function() {
     if (touch == false) { // if user not clicking on [input:range] match song current time to [input:range] 
         progress.value = song.currentTime;
-        timeLeft.innerHTML = Math.floor(song.currentTime);
-        timeRemain.innerHTML = Math.floor(song.duration - song.currentTime);
+        timeLeft.innerHTML = secondsToMinutes(song.currentTime);
+        timeRemain.innerHTML = secondsToMinutes(song.duration - song.currentTime);
     }
 });
 song.addEventListener("ended", function() {
