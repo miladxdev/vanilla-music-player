@@ -1,4 +1,4 @@
-// dom elements
+// DOM elements
 const cover = document.getElementById('cover');
 const title = document.getElementById('title');
 const artist = document.getElementById('artist');
@@ -59,11 +59,13 @@ function playSong() {
         title.innerHTML = nowPlaying.title;
         artist.innerHTML = nowPlaying.artist;
         playIcon.className = "fa fa-pause";
+        playIcon.style.transform = "translateX(0%)";
         
         isPlaying = true;
     } else {
         song.pause();
         playIcon.className = "fa fa-play";
+        playIcon.style.transform = "translateX(10%)"
         isPlaying = false;
     }
 }

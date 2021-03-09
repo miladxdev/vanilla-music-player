@@ -7,17 +7,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <!-- <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'> -->
     <script src="app.js" defer></script>
     <title>vanilla music player</title>
 </head>
 
 <body>
     <div class="player">
-
+        
         <div class="header">
-            <i class="fa fa-bars" style='float:right'></i>
-            <i class="fa fa-chevron-left" style='float:left'></i>
+            <i class="fa fa-chevron-left"></i>
+            <div class="speaker"></div>
+            <i class="fa fa-bars"></i>
         </div>
 
         <div class="playing">
@@ -42,16 +42,17 @@
         </div>
 
         <div class="control">
+            <!-- <i class="fa fa-random"></i> -->
             <div class="button small" id="back">
                 <i class="fa fa-backward"></i>
             </div>
             <div class="button" id="play">
                 <i class="fa fa-play" id="play-icon"></i>
-             </div>
-             <div class="button small" id="next">
+            </div>
+            <div class="button small" id="next">
                 <i class="fa fa-forward"></i>
-             </div>
-         </div>
+            </div>
+        </div>
 
         </div>
     </div>
