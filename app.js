@@ -10,6 +10,7 @@ const timeRemain = document.getElementById('time-remain');
 const playBtn = document.getElementById('play');
 const playIcon = document.getElementById('play-icon');
 const nextBtn = document.getElementById('next');
+const backBtn = document.getElementById('back');
 
 // variables
 let isPlaying = false;
@@ -75,7 +76,15 @@ nextBtn.addEventListener("click", function() {
     
     nowPlaying = playList[track];
     isPlaying = false;
+    playSong();
+});
 
+backBtn.addEventListener("click", function() {
+    track --;
+    if (track < 0) track = playList.length-1;
+
+    nowPlaying = playList[track];
+    isPlaying = false;
     playSong();
 });
 
