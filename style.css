@@ -78,7 +78,7 @@ small#artist {
 
 
 
-input#progress {
+input#slider {
     -webkit-appearance: none;
     height: 10px;
     outline: none;
@@ -89,10 +89,10 @@ input#progress {
     transition: .2s;
     cursor: pointer;
 }
-input#progress:hover {
+input#slider:hover {
     background:hsl(214, 44%, 90%);
 }
-input#progress::-webkit-slider-thumb {
+input#slider::-webkit-slider-thumb {
     -webkit-appearance: none;
     width: 14px;
     height: 14px;
@@ -101,7 +101,7 @@ input#progress::-webkit-slider-thumb {
     transition: .1s;
     cursor: grab;
 }
-input#progress::-webkit-slider-thumb:hover {
+input#slider::-webkit-slider-thumb:hover {
     width: 20px;
     height: 20px;
 }

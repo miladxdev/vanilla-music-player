@@ -3,7 +3,7 @@ const cover = document.getElementById('cover');
 const title = document.getElementById('title');
 const artist = document.getElementById('artist');
 
-const progress = document.getElementById('progress');
+const slider = document.getElementById('slider');
 const timeLeft = document.getElementById('time-left');
 const timeRemain = document.getElementById('time-remain');
 
@@ -19,28 +19,25 @@ let currentTime = 0;
 
 let playList = [
     {title: 'Time',            artist: 'Alan Walker & Hans Zimmer', src: 'music/Time (Alan Walker Remix).m4a', cover: 'cover/Time.jpg'},
-    {title: 'In The End',      artist: 'Mellen Gi',                 src: 'music/In The End (remix).mp3',       cover: 'cover/In The End.jpg'},
+    {title: 'In The End',      artist: 'Fleurie',                   src: 'music/In The End (remix).mp3',       cover: 'cover/In The End.jpg'},
     {title: 'Ghost',           artist: 'Au/Ra x Alan Walker',       src: 'music/Ghost.m4a',                    cover: 'cover/time-fall.jpg'},
     {title: 'Never Fade Away', artist: 'Olga Jankowska',            src: 'music/Never Fade Away.mp3',          cover: 'cover/Cyberpunk.jpg'}
 ];
 let track = 0;
 let nowPlaying = playList[track];
 
+// audio object
 let song = new Audio();
 
-// default tarck
 song.volume = 0.4;
 song.src = nowPlaying.src;
 currentSrc = nowPlaying.src;
-cover.src = nowPlaying.cover;
-title.innerHTML = nowPlaying.title;
-artist.innerHTML = nowPlaying.artist;
+
 song.onloadeddata = function() {
     duration = song.duration;
-    progress.max = duration;
+    slider.max = duration;
     console.log(duration);
 }
-
 
 
 function playSong() {
@@ -49,6 +46,7 @@ function playSong() {
         song.src = nowPlaying.src;
         currentSrc = nowPlaying.src;
     }
+    
     if (!isPlaying) {
         // update music info
         song.play();
@@ -67,8 +65,8 @@ function playSong() {
 }
 
 
+// Control Buttons
 playBtn.addEventListener("click", playSong);
-
 
 nextBtn.addEventListener("click", function() {
     track ++;
@@ -89,18 +87,12 @@ backBtn.addEventListener("click", function() {
 });
 
 
+// range slider
 let touch = false;
-progress.addEventListener("mousedown", function() {
-    touch = true;
-    
-});
-progress.addEventListener("mouseup", function() {
-    touch = false;
-    
-});
-progress.addEventListener("change", function() {
-    song.currentTime = progress.value;
-    
+slider.addEventListener("mousedown", function() { touch = true; });
+slider.addEventListener("mouseup", function() { touch = false; });
+slider.addEventListener("change", function() {
+    song.currentTime = slider.value;
 });
 
 
@@ -111,21 +103,20 @@ function secondsToMinutes(sec) {
 
 
 song.addEventListener("timeupdate", function() {
-    if (touch == false) { // if user not clicking on [input:range] match song current time to [input:range] 
-        progress.value = song.currentTime;
+    if (touch == false) { // if user not clicking on [input:range], match song's current time to [input:range] 
+        slider.value = song.currentTime;
         timeLeft.innerHTML = secondsToMinutes(song.currentTime);
         timeRemain.innerHTML = secondsToMinutes(song.duration - song.currentTime);
     }
 
-    let x = ((progress.value / progress.max) * 100);
-    // console.log(x);
-    progress.style.background = `linear-gradient(to right, hsl(214, 45%, 86%) ${x}%, #e5ecf5 0%)`;
+    let x = ((slider.value / slider.max) * 100);
+    slider.style.background = `linear-gradient(to right, hsl(214, 45%, 86%) ${x}%, #e5ecf5 0%)`;
 });
 song.addEventListener("ended", function() {
     song.pause();
     isPlaying = false;
     song.currentTime = 0;
-    progress.value = 0;
+    slider.value = 0;
     playIcon.className = "fa fa-play";
 });
 
