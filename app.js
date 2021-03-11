@@ -11,6 +11,7 @@ const playBtn = document.getElementById('play');
 const playIcon = document.getElementById('play-icon');
 const nextBtn = document.getElementById('next');
 
+// variables
 let isPlaying = false;
 let duration = 0;
 let currentTime = 0;
@@ -34,9 +35,9 @@ cover.src = nowPlaying.cover;
 title.innerHTML = nowPlaying.title;
 artist.innerHTML = nowPlaying.artist;
 song.onloadeddata = function() {
-duration = song.duration;
-progress.max = duration;
-console.log(duration);
+    duration = song.duration;
+    progress.max = duration;
+    console.log(duration);
 }
 
 
@@ -47,11 +48,6 @@ function playSong() {
         song.src = nowPlaying.src;
         currentSrc = nowPlaying.src;
     }
-    // song.onloadeddata = function() {
-        duration = song.duration;
-        progress.max = duration;
-        // console.log(duration);
-    // }
     if (!isPlaying) {
         // update music info
         song.play();
@@ -60,7 +56,6 @@ function playSong() {
         artist.innerHTML = nowPlaying.artist;
         playIcon.className = "fa fa-pause";
         playIcon.style.transform = "translateX(0%)";
-        
         isPlaying = true;
     } else {
         song.pause();
@@ -100,9 +95,9 @@ progress.addEventListener("change", function() {
 });
 
 
-function secondsToMinutes(time) {
-    return Math.floor(time / 60).toString().padStart(2, '0') +':'+
-           Math.floor(time % 60).toString().padStart(2, '0');
+function secondsToMinutes(sec) {
+    return Math.floor(sec / 60).toString().padStart(2, '0') +':'+
+           Math.floor(sec % 60).toString().padStart(2, '0');
 }
 
 
@@ -112,6 +107,10 @@ song.addEventListener("timeupdate", function() {
         timeLeft.innerHTML = secondsToMinutes(song.currentTime);
         timeRemain.innerHTML = secondsToMinutes(song.duration - song.currentTime);
     }
+
+    let x = ((progress.value / progress.max) * 100);
+    // console.log(x);
+    progress.style.background = `linear-gradient(to right, hsl(214, 45%, 86%) ${x}%, #e5ecf5 0%)`;
 });
 song.addEventListener("ended", function() {
     song.pause();

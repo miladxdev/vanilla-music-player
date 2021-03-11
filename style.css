@@ -48,9 +48,9 @@ body {
 }
 .speaker {
     width: 100px;
-    height: 5px;
+    height: 4px;
     border-radius: 40px;
-    background: rgb(173, 173, 173);
+    background: rgb(170, 170, 170);
 }
 
 
@@ -83,11 +83,14 @@ input#progress {
     height: 10px;
     outline: none;
     background: #e5ecf5;
-    
+    /* background: linear-gradient(to right, hsl(214, 45%, 85%) 50%, #e5ecf5 0%); */
     border-radius: 10px;
     width: 100%;
-
+    transition: .2s;
     cursor: pointer;
+}
+input#progress:hover {
+    background:hsl(214, 44%, 90%);
 }
 input#progress::-webkit-slider-thumb {
     -webkit-appearance: none;
@@ -121,7 +124,7 @@ input#progress::-webkit-slider-thumb:hover {
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 34px;
+    font-size: 30px;
     width: 70px;
     height: 70px;
     border-radius: 50px;
