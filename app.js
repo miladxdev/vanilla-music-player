@@ -17,8 +17,8 @@ let duration = 0;
 let currentTime = 0;
 
 let playList = [
-    {title: 'The Dark side',   artist: 'Muse',                      src: 'music/The Dark Side.mp3',            cover: 'cover/simulation-theory.jpg'},
     {title: 'Time',            artist: 'Alan Walker & Hans Zimmer', src: 'music/Time (Alan Walker Remix).m4a', cover: 'cover/Time.jpg'},
+    {title: 'In The End',      artist: 'Mellen Gi',                 src: 'music/In The End (remix).mp3',       cover: 'cover/In The End.jpg'},
     {title: 'Ghost',           artist: 'Au/Ra x Alan Walker',       src: 'music/Ghost.m4a',                    cover: 'cover/time-fall.jpg'},
     {title: 'Never Fade Away', artist: 'Olga Jankowska',            src: 'music/Never Fade Away.mp3',          cover: 'cover/Cyberpunk.jpg'}
 ];
