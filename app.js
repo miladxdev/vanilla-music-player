@@ -113,10 +113,16 @@ song.addEventListener("timeupdate", function() {
     slider.style.background = `linear-gradient(to right, hsl(214, 45%, 86%) ${x}%, #e5ecf5 0%)`;
 });
 song.addEventListener("ended", function() {
-    song.pause();
+    // song.pause();
+    // isPlaying = false;
+    // song.currentTime = 0;
+    // slider.value = 0;
+    // playIcon.className = "fa fa-play";
+    track ++;
+    if (track > playList.length-1) track = 0;
+    
+    nowPlaying = playList[track];
     isPlaying = false;
-    song.currentTime = 0;
-    slider.value = 0;
-    playIcon.className = "fa fa-play";
+    playSong();
 });
 

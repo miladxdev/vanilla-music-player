@@ -22,7 +22,7 @@ body {
     position: relative;
     display: flex;
     flex-direction: column;
-    justify-content: space-around;
+    justify-content: space-between;
     width: 320px;
     height: 580px;
     padding: 20px;
