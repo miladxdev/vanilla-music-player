@@ -1,5 +1,6 @@
 // DOM elements
 const cover = document.getElementById('cover');
+const volume = document.getElementById('volume');
 const title = document.getElementById('title');
 const artist = document.getElementById('artist');
 
@@ -29,7 +30,12 @@ let nowPlaying = playList[track];
 // audio object
 let song = new Audio();
 
-song.volume = 0.4;
+// change volume
+volume.addEventListener("change", function() {
+    setInterval(() => song.volume = volume.value/100, 10);
+});
+
+
 song.src = nowPlaying.src;
 currentSrc = nowPlaying.src;
 
@@ -91,8 +97,13 @@ backBtn.addEventListener("click", function() {
 let touch = false;
 slider.addEventListener("mousedown", function() { touch = true; });
 slider.addEventListener("mouseup", function() { touch = false; });
+
 slider.addEventListener("change", function() {
     song.currentTime = slider.value;
+    setInterval(() => {
+        let x = ((slider.value / slider.max) * 100);
+        slider.style.background = `linear-gradient(to right, hsl(214, 45%, 86%) ${x}%, #e5ecf5 0%)`;
+    }, 10);
 });
 
 
@@ -108,9 +119,7 @@ song.addEventListener("timeupdate", function() {
         timeLeft.innerHTML = secondsToMinutes(song.currentTime);
         timeRemain.innerHTML = secondsToMinutes(song.duration - song.currentTime);
     }
-
-    let x = ((slider.value / slider.max) * 100);
-    slider.style.background = `linear-gradient(to right, hsl(214, 45%, 86%) ${x}%, #e5ecf5 0%)`;
+  
 });
 song.addEventListener("ended", function() {
     // song.pause();
