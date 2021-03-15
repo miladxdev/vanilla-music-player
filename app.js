@@ -31,8 +31,8 @@ let nowPlaying = playList[track];
 let song = new Audio();
 
 // change volume
-volume.addEventListener("change", function() {
-    setInterval(() => song.volume = volume.value/100, 10);
+volume.addEventListener("input", function() {
+     song.volume = volume.value/100;
 });
 
 
@@ -45,14 +45,12 @@ song.onloadeddata = function() {
     console.log(duration);
 }
 
-
 function playSong() {
-    // change song.src if track has changed
+    // change song.src only if track has changed
     if(currentSrc != nowPlaying.src) {
         song.src = nowPlaying.src;
         currentSrc = nowPlaying.src;
     }
-    
     if (!isPlaying) {
         // update music info
         song.play();
@@ -69,6 +67,7 @@ function playSong() {
         isPlaying = false;
     }
 }
+
 
 
 // Control Buttons
@@ -93,6 +92,7 @@ backBtn.addEventListener("click", function() {
 });
 
 
+
 // range slider
 let touch = false;
 slider.addEventListener("mousedown", function() { touch = true; });
@@ -113,6 +113,7 @@ function secondsToMinutes(sec) {
 }
 
 
+// song events
 song.addEventListener("timeupdate", function() {
     if (touch == false) { // if user not clicking on [input:range], match song's current time to [input:range] 
         slider.value = song.currentTime;
