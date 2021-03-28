@@ -9,8 +9,8 @@
 
 body {
     height: 100vh;
-    background: #e5ecf5;
-    background: linear-gradient(to bottom right, hsl(214, 44%, 93%), hsl(230, 44%, 90%));
+    overflow: hidden;
+    background: linear-gradient(to bottom right, hsl(214, 44%, 93%), hsl(265, 44%, 90%));
     font-family: '@Microsoft Yahei Ui Light';
     display: flex;
     justify-content: center;
@@ -45,17 +45,9 @@ body {
     display: flex;
     justify-content: space-between;
     font-size: medium;
-    padding: 10px 0;
-    color: rgb(83, 83, 83);
+    padding: 4px;
+    color: grey;
 }
-.speaker {
-    width: 100px;
-    height: 4px;
-    border-radius: 40px;
-    background: rgb(170, 170, 170);
-}
-
-
 
 .cover {
     position: relative;
@@ -89,8 +81,8 @@ input#volume {
 }
 input#volume::-webkit-slider-thumb {
     -webkit-appearance: none;
-    width: 20px;
-    height: 20px;
+    width: 22px;
+    height: 22px;
     border-radius: 50%;
     border: 1px solid grey;
     /* background:red; */
@@ -101,8 +93,11 @@ input#volume::-webkit-slider-thumb {
     cursor: grab;
 }
 
-.info { margin-top: 10px; }
-.info small { display: block; }
+/* .info { margin-top: 10px; } */
+.info small { 
+    display: block;
+    margin-top: 10px;
+}
 small#title { letter-spacing: 2px; }
 small#artist {
     font-size: 16px;
@@ -183,3 +178,8 @@ input#slider::-webkit-slider-thumb:hover {
     height: 40px;
     font-size: medium;
 }
+
+
+/* instagram: web.script
+github: github.com/xcripts
+© 2020 Milad Gharibi. All rights reserved */

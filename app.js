@@ -136,3 +136,7 @@ song.addEventListener("ended", function() {
     playSong();
 });
 
+
+// instagram: web.script
+// github: github.com/xcripts
+// © 2020 Milad Gharibi. All rights reserved
