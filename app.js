@@ -51,10 +51,12 @@ function playSong() {
     if(currentSrc != nowPlaying.src) {
         song.src = nowPlaying.src;
         currentSrc = nowPlaying.src;
-        cover.style.animation = "fade 1s ease-in";
-        // document.querySelector('.cover').className += ' effect';
-        // document.querySelector('.cover').className = 'cover';
+        
+        document.querySelector('#cover').classList.remove('effect');
+        void document.querySelector('#cover').offsetWidth;
+        document.querySelector('#cover').classList.add('effect');
     }
+    
     if (!isPlaying) {
         // update music info
         song.play();
