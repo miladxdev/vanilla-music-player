@@ -5,11 +5,8 @@
     padding: 0;
 }
 
-
-
 body {
     height: 100vh;
-    overflow: hidden;
     background: linear-gradient(to bottom right, hsl(214, 44%, 93%), hsl(265, 44%, 90%));
     font-family: '@Microsoft Yahei Ui Light';
     display: flex;
@@ -36,7 +33,7 @@ body {
     font-size: 26px;
     text-align: center;
     border-radius: 40px;
-    overflow: hidden;
+    /* overflow: hidden; */
 }
 
 
@@ -49,34 +46,36 @@ body {
     color: grey;
 }
 
-.cover {
+.cover-container {
     position: relative;
     border-radius: 20px;
     /* box-shadow: 0 0 5px #e5ecf5; */
     overflow: hidden;
 }
-.cover img {
+.cover-container img {
     display: block;
     width: 100%;
     opacity: .88;
 }
-.cover:hover #volume {
+.cover-container:hover #volume {
     opacity: 1;
 }
 
 input#volume {
-    position: absolute;
-    transform: translateX(-50%);
-    width: 80%;
-    bottom: 20px; left: 50%;
+   
+    /* position: absolute; */
+    /* transform: translateX(-50%); */
+    /* width: 80%; */
+    /* bottom: 20px; left: 50%; */
+    transform: translateY(-9px);
     -webkit-appearance: none;
     height: 2px;
     outline: none;
-    background: grey;
+    background:hsl(214, 44%, 89%);
     border-radius: 50%;
     cursor: pointer;
-    transition: 1s ease-out;
-    opacity: 0;
+    /* transition: 1s ease-out; */
+    /* opacity: 0; */
     /* z-index: 100; */
 }
 input#volume::-webkit-slider-thumb {
@@ -84,12 +83,12 @@ input#volume::-webkit-slider-thumb {
     width: 22px;
     height: 22px;
     border-radius: 50%;
-    border: 1px solid grey;
-    /* background:red; */
-    background: url(icon/medium_volume.svg) #fafafa;
-    background-size: 80%;
+    /* border: 1px solid grey; */
+    background:hsl(214, 44%, 70%);
+    /* background: url(icon/medium_volume.svg) #fafafa; */
+    /* background-size: 80%;
     background-position: center;
-    background-repeat: no-repeat;
+    background-repeat: no-repeat; */
     cursor: grab;
 }
 
@@ -112,7 +111,8 @@ input#slider {
     height: 6px;
     outline: none;
     border-radius: 50%;
-    background: #e5ecf5;
+    background: hsl(214, 44%, 92%);
+    /* background: red; */
     /* background: linear-gradient(to right, hsl(214, 45%, 85%) 50%, #e5ecf5 0%); */
     /* border-radius: 10px; */
     
@@ -145,6 +145,7 @@ input#slider::-webkit-slider-thumb:hover {
 
 
 .control {
+    position: relative;
     display: flex;
     justify-content: space-around;
     align-items: center;
@@ -180,6 +181,57 @@ input#slider::-webkit-slider-thumb:hover {
 }
 
 
+#volume-btn {
+    /* border: 2px solid red; */
+    border: none;
+    outline: none;
+    background: transparent;
+}
+
+#volume-btn i {
+    
+    font-size: 16px;
+    transform: scale(1.4);
+    color: grey;
+
+}
+.volume-slider {
+    /* display: none; */
+    opacity: 0;
+    visibility: hidden;
+    position: absolute;
+    top: -30px;
+    right: -19%;
+    transform: translateY(10px);
+    width: 50%;
+    background: hsl(0, 0%, 98%);
+    border: 1px solid hsl(0, 0%, 94%);
+    box-shadow: 1px 1px 8px rgba(0, 0, 0, 0.1);
+    /* border: 1px solid red; */
+    border-radius: 40px;
+    transition: .3s;
+    
+}
+.volume-slider:hover {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+    
+}
+#volume-btn:focus + .volume-slider {
+    transform: translateY(0);
+    opacity: 1;
+    visibility: visible;
+}
+
+
+.effect {
+  animation: fade .5s ease-in;
+}
+@keyframes fade {
+    from { transform: translateX(100px); }
+    to { transform: translateX(0); }
+}
 /* instagram: web.script
 github: github.com/xcripts
 © 2020 Milad Gharibi. All rights reserved */

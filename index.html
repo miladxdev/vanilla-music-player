@@ -21,14 +21,14 @@
         </div>
 
         <div class="playing">
-            <div class="cover">
+            <div class="cover-container">
                 <img src="cover/default.png" id="cover">
-                <input type="range" id="volume" min="0" max="100" value="50">
+                
             </div>
 
             <div class="info">
                 <small id="title">vanilla music player</small>
-                <small id="artist">Milad Gharibi</small>
+                <small id="artist">by Milad Gharibi</small>
             </div>
         </div>
         
@@ -44,19 +44,27 @@
 
         <div class="control">
             <i class="fa fa-random" style="font-size: 14px; color: grey"></i>
+
             <div class="button small" id="back">
                 <i class="fa fa-backward"></i>
             </div>
+
             <div class="button" id="play">
                 <i class="fa fa-play" id="play-icon"></i>
             </div>
+
             <div class="button small" id="next">
                 <i class="fa fa-forward"></i>
             </div>
-            <i class="fa fa-repeat" style="font-size: 14px; color: grey"></i>
+            
+            <button id="volume-btn">
+                <i class="fa fa-volume-down"></i>
+            </button>
+            <div class="volume-slider">
+                <input type="range" id="volume" min="0" max="100" value="50">
+            </div>
         </div>
-
-        </div>
+            
     </div>
 
 </body>

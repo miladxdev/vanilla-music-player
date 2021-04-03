@@ -29,6 +29,7 @@ let nowPlaying = playList[track];
 
 // audio object
 let song = new Audio();
+song.volume = 0.5;
 
 // change volume
 volume.addEventListener("input", function() {
@@ -50,11 +51,16 @@ function playSong() {
     if(currentSrc != nowPlaying.src) {
         song.src = nowPlaying.src;
         currentSrc = nowPlaying.src;
+        cover.style.animation = "fade 1s ease-in";
+        // document.querySelector('.cover').className += ' effect';
+        // document.querySelector('.cover').className = 'cover';
     }
     if (!isPlaying) {
         // update music info
         song.play();
         cover.src = nowPlaying.cover;
+        
+        
         title.innerHTML = nowPlaying.title;
         artist.innerHTML = nowPlaying.artist;
         playIcon.className = "fa fa-pause";
@@ -102,7 +108,7 @@ slider.addEventListener("change", function() {
     song.currentTime = slider.value;
     setInterval(() => {
         let x = ((slider.value / slider.max) * 100);
-        slider.style.background = `linear-gradient(to right, hsl(214, 45%, 86%) ${x}%, #e5ecf5 0%)`;
+        slider.style.background = `linear-gradient(to right, hsl(214, 45%, 84%) ${x}%, #e5ecf5 0%)`;
     }, 10);
 });
 
@@ -136,6 +142,11 @@ song.addEventListener("ended", function() {
     playSong();
 });
 
+
+// play|pause with spacebar key
+document.body.addEventListener("keydown", event => {
+    if (event.keyCode == 32) playSong();
+});
 
 // instagram: web.script
 // github: github.com/xcripts
