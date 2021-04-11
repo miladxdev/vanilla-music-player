@@ -1,4 +1,10 @@
 // DOM elements
+const menuBtn = document.getElementById('menu');
+// const coverContainer = document.querySelector(".cover-container");
+
+// var jsmediatags = window.jsmediatags;
+
+
 const cover = document.getElementById('cover');
 const volume = document.getElementById('volume');
 const title = document.getElementById('title');
@@ -24,12 +30,13 @@ let playList = [
     {title: 'Ghost',           artist: 'Au/Ra x Alan Walker',       src: 'music/Ghost.m4a',                    cover: 'cover/time-fall.jpg'},
     {title: 'Never Fade Away', artist: 'Olga Jankowska',            src: 'music/Never Fade Away.mp3',          cover: 'cover/Cyberpunk.jpg'}
 ];
+
 let track = 0;
 let nowPlaying = playList[track];
-
 // audio object
 let song = new Audio();
 song.volume = 0.5;
+
 
 // change volume
 volume.addEventListener("input", function() {
@@ -43,12 +50,14 @@ currentSrc = nowPlaying.src;
 song.onloadeddata = function() {
     duration = song.duration;
     slider.max = duration;
-    console.log(duration);
+    // console.log(duration);
 }
-
+// menuBtn.addEventListener("click", () => {
+//     coverContainer.style.transform ="rotate(360deg)";
+// })
 function playSong() {
-    // change song.src only if track has changed
     if(currentSrc != nowPlaying.src) {
+        // change song.src only if track has changed
         song.src = nowPlaying.src;
         currentSrc = nowPlaying.src;
         
@@ -59,14 +68,12 @@ function playSong() {
     
     if (!isPlaying) {
         // update music info
-        song.play();
         cover.src = nowPlaying.cover;
-        
-        
         title.innerHTML = nowPlaying.title;
         artist.innerHTML = nowPlaying.artist;
         playIcon.className = "fa fa-pause";
         playIcon.style.transform = "translateX(0%)";
+        song.play();
         isPlaying = true;
     } else {
         song.pause();
@@ -123,7 +130,7 @@ function secondsToMinutes(sec) {
 
 // song events
 song.addEventListener("timeupdate", function() {
-    if (touch == false) { // if user not clicking on [input:range], match song's current time to [input:range] 
+    if (!touch) { // if user not clicking on [input:range], match song's current time to [input:range] 
         slider.value = song.currentTime;
         timeLeft.innerHTML = secondsToMinutes(song.currentTime);
         timeRemain.innerHTML = secondsToMinutes(song.duration - song.currentTime);
@@ -131,11 +138,6 @@ song.addEventListener("timeupdate", function() {
   
 });
 song.addEventListener("ended", function() {
-    // song.pause();
-    // isPlaying = false;
-    // song.currentTime = 0;
-    // slider.value = 0;
-    // playIcon.className = "fa fa-play";
     track ++;
     if (track > playList.length-1) track = 0;
     
@@ -144,6 +146,17 @@ song.addEventListener("ended", function() {
     playSong();
 });
 
+const trackContainer = document.querySelector('.track-container');
+menuBtn.addEventListener("click", () => {
+    if (trackContainer.style.bottom == '100%') {
+        trackContainer.style.bottom = '0';
+        trackContainer.style.top = '0';
+    } else {
+        trackContainer.style.bottom = '100%';
+        trackContainer.style.top = '-10%';
+    }
+    
+});
 
 // play|pause with spacebar key
 document.body.addEventListener("keydown", event => {
@@ -152,4 +165,4 @@ document.body.addEventListener("keydown", event => {
 
 // instagram: web.script
 // github: github.com/xcripts
-// © 2020 Milad Gharibi. All rights reserved
+// © 2021 Milad Gharibi. All rights reserved

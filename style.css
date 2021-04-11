@@ -7,14 +7,12 @@
 
 body {
     height: 100vh;
-    background: linear-gradient(to bottom right, hsl(214, 44%, 93%), hsl(265, 44%, 90%));
+    background: linear-gradient(to bottom right, #e5ecf5, hsl(265, 44%, 90%));
     font-family: '@Microsoft Yahei Ui Light';
     display: flex;
     justify-content: center;
     align-items: center;
 }
-
-
 
 .player {
     position: relative;
@@ -43,8 +41,8 @@ body {
     left: 50%;
     transform: translateX(-50%);
     width: 50%;
-    height: 30px;
-    border-radius: 0 0 10px 10px;
+    height: 40px;
+    border-radius: 0 0 20px 20px;
     /* background: grey; */
     border: 4px solid rgb(231, 231, 231);
     border-top: none;
@@ -61,18 +59,26 @@ body {
 .cover-container {
     position: relative;
     border-radius: 20px;
-    /* box-shadow: 0 0 5px #e5ecf5; */
     overflow: hidden;
+    /* transform: rotateZ(50deg); */
 }
+
 .cover-container img {
     display: block;
     width: 100%;
-    opacity: .88;
-}
-.cover-container:hover #volume {
-    opacity: 1;
+    border-radius: 20px;
+    opacity: .8;
 }
 
+.track-container {
+    position: absolute;
+    width: 100%;
+    top: -10%;
+    bottom: 100%;
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(8px);
+    transition: .5s;
+}
 
 /* .info { margin-top: 10px; } */
 .info small { 
@@ -152,18 +158,19 @@ input#slider::-webkit-slider-thumb:hover {
     background: hsl(214, 44%, 80%);
 }
 
-.button#back i { transform: translateX(-15%);}
-.button#play i { transform: translateX(10%); }
-.button#next i { transform: translateX(15%); }
-
-.button.small {
+.small {
     width: 40px;
     height: 40px;
     font-size: medium;
 }
 
+.button#back i { transform: translateX(-15%);}
+.button#play i { transform: translateX(10%); }
+.button#next i { transform: translateX(15%); }
+
+
+
 input#volume {
-   
     /* position: absolute; */
     /* transform: translateX(-50%); */
     /* width: 80%; */
@@ -218,7 +225,7 @@ input#volume::-webkit-slider-thumb {
     transform: translateY(10px);
     width: 50%;
     background: hsl(0, 0%, 98%);
-    border: 1px solid hsl(0, 0%, 94%);
+    border: 1px solid hsl(0, 0%, 92%);
     box-shadow: 1px 1px 8px rgba(0, 0, 0, 0.1);
     /* border: 1px solid red; */
     border-radius: 40px;
@@ -252,4 +259,4 @@ input#volume::-webkit-slider-thumb {
 }
 /* instagram: web.script
 github: github.com/xcripts
-© 2020 Milad Gharibi. All rights reserved */
+© 2021 Milad Gharibi. All rights reserved */
