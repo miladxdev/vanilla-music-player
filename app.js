@@ -1,11 +1,5 @@
 // DOM elements
-const menuBtn = document.getElementById('menu');
-// const coverContainer = document.querySelector(".cover-container");
-
-// var jsmediatags = window.jsmediatags;
-
-
-const cover = document.getElementById('cover');
+const coverImg = document.getElementById('cover');
 const volume = document.getElementById('volume');
 const title = document.getElementById('title');
 const artist = document.getElementById('artist');
@@ -27,7 +21,7 @@ let currentTime = 0;
 let playList = [
     {title: 'Time',            artist: 'Alan Walker & Hans Zimmer', src: 'music/Time (Alan Walker Remix).m4a', cover: 'cover/Time.jpg'},
     {title: 'In The End',      artist: 'Fleurie',                   src: 'music/In The End (remix).mp3',       cover: 'cover/In The End.jpg'},
-    {title: 'Ghost',           artist: 'Au/Ra x Alan Walker',       src: 'music/Ghost.m4a',                    cover: 'cover/time-fall.jpg'},
+    {title: 'Algorithm',       artist: 'Muse',                      src: 'music/01. Algorithm.mp3',            cover: 'cover/Simulation.Theory.jpg'},
     {title: 'Never Fade Away', artist: 'Olga Jankowska',            src: 'music/Never Fade Away.mp3',          cover: 'cover/Cyberpunk.jpg'}
 ];
 
@@ -43,18 +37,28 @@ volume.addEventListener("input", function() {
      song.volume = volume.value/100;
 });
 
-
 song.src = nowPlaying.src;
-currentSrc = nowPlaying.src;
+let currentSrc = nowPlaying.src;
 
 song.onloadeddata = function() {
     duration = song.duration;
     slider.max = duration;
     // console.log(duration);
 }
-// menuBtn.addEventListener("click", () => {
-//     coverContainer.style.transform ="rotate(360deg)";
-// })
+
+
+// functions
+function nowPlayingBorder() {
+    // make border for now playing song when click on menu
+    const trackLists = document.querySelectorAll(".track-list");
+    for (let i = 0; i < trackLists.length; i++) {
+        trackLists[i].style.boxShadow = "0 0 2px 2px #00000008"; 
+    }
+    trackLists[track].style.boxShadow = "0 0 2px 2px #5a86bf79";    
+}
+
+
+
 function playSong() {
     if(currentSrc != nowPlaying.src) {
         // change song.src only if track has changed
@@ -66,9 +70,11 @@ function playSong() {
         document.querySelector('#cover').classList.add('effect');
     }
     
+    nowPlayingBorder();
+
     if (!isPlaying) {
         // update music info
-        cover.src = nowPlaying.cover;
+        coverImg.src = nowPlaying.cover;
         title.innerHTML = nowPlaying.title;
         artist.innerHTML = nowPlaying.artist;
         playIcon.className = "fa fa-pause";
@@ -137,6 +143,7 @@ song.addEventListener("timeupdate", function() {
     }
   
 });
+
 song.addEventListener("ended", function() {
     track ++;
     if (track > playList.length-1) track = 0;
@@ -146,17 +153,23 @@ song.addEventListener("ended", function() {
     playSong();
 });
 
+const menuBtn = document.getElementById('menu');
 const trackContainer = document.querySelector('.track-container');
+trackContainer.style.bottom = '101%'; // fix working for first time
+
 menuBtn.addEventListener("click", () => {
-    if (trackContainer.style.bottom == '100%') {
+    if (trackContainer.style.bottom == '101%') {
         trackContainer.style.bottom = '0';
         trackContainer.style.top = '0';
+        menuBtn.style.color = '#5a86bf';
     } else {
-        trackContainer.style.bottom = '100%';
+        trackContainer.style.bottom = '101%';
         trackContainer.style.top = '-10%';
+        menuBtn.style.color = 'grey';
     }
     
 });
+
 
 // play|pause with spacebar key
 document.body.addEventListener("keydown", event => {
