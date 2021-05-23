@@ -1,103 +1,110 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <script defer type="module" src="app.js"></script>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
     <title>vanilla music player</title>
-</head>
+  </head>
 
-<body>
+  <body>
     <div class="player">
-        <div class="notch"></div>
-        <div class="header">
-            <i class="fa fa-chevron-left"></i>
-            <!-- <div class="speaker"></div> -->
-            <i class="fa fa-bars" id="menu"></i>
+      <div class="notch"></div>
+      <div class="header">
+        <i class="fa fa-chevron-left"></i>
+        <i class="fa fa-bars" id="menu"></i>
+      </div>
+
+      <div class="playing">
+        <div class="cover-container">
+          <img src="cover/default.png" id="cover" />
+
+          <div class="track-container">
+            <div class="track-list">
+              <img src="cover/Time.jpg" />
+              <p>Time - Alan Walker and Hans...</p>
+            </div>
+
+            <div class="track-list">
+              <img src="cover/In The End.jpg" />
+              <p>Fleurie - In The End</p>
+            </div>
+
+            <div class="track-list">
+              <img src="cover/Simulation.Theory.jpg" />
+              <p>Muse - Algorithm</p>
+            </div>
+
+            <div class="track-list">
+              <img src="cover/Cyberpunk.jpg" />
+              <p>Never Fade Away - Olga...</p>
+            </div>
+          </div>
         </div>
 
-        <div class="playing">
-
-            <div class="cover-container">        
-                <img src="cover/default.png" id="cover">
-
-                <div class="track-container">
-
-                    <div class="track-list">
-                        <img src="cover/Time.jpg">
-                        <p>Time - Alan Walker and Hans...</p>
-                    </div>
-
-                    <div class="track-list">
-                        <img src="cover/In The End.jpg">
-                        <p>Fleurie - In The End</p>
-                    </div>
-
-                    <div class="track-list">
-                        <img src="cover/Simulation.Theory.jpg">
-                        <p>Muse - Algorithm</p>
-                    </div>
-
-                    <div class="track-list">
-                        <img src="cover/Cyberpunk.jpg">
-                        <p>Never Fade Away - Olga...</p> 
-                    </div>
-
-                </div>
-                
-
-            </div>
-
-            <div class="info">
-                <small id="title">vanilla music player</small>
-                <small id="artist">by Milad Gharibi</small>
-            </div>
+        <div class="info">
+          <small id="title">vanilla music player</small>
+          <small id="artist">by Milad Gharibi</small>
         </div>
-        
-        <div class="slider">
-            <div class="slider-container">
-                <input type="range" id="slider" min="0" max="100" value="0">
-                <div class="timer">
-                    <span id="time-left" style="float: left">00</span>
-                    <span id="time-remain"  style="float: right">00</span>
-                </div>
-            </div>
+      </div>
+
+      <div class="slider">
+        <div class="slider-container">
+          <input type="range" id="slider" min="0" max="100" value="0" />
+          <div class="timer">
+            <span id="time-left" style="float: left">00</span>
+            <span id="time-remain" style="float: right">00</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="control">
+        <i class="fa fa-random" style="font-size: 14px; color: grey"></i>
+
+        <div class="button small" id="back">
+          <i class="fa fa-backward"></i>
         </div>
 
-        <div class="control">
-            <i class="fa fa-random" style="font-size: 14px; color: grey"></i>
-
-            <div class="button small" id="back">
-                <i class="fa fa-backward"></i>
-            </div>
-
-            <div class="button" id="play">
-                <i class="fa fa-play" id="play-icon"></i>
-            </div>
-
-            <div class="button small" id="next">
-                <i class="fa fa-forward"></i>
-            </div>
-            
-            <button id="volume-btn">
-                <i class="fa fa-volume-down"></i>
-            </button>
-            <div class="volume-slider">
-                <input type="range" id="volume" min="0" max="100" value="50">
-            </div>
+        <div class="button" id="play">
+          <i class="fa fa-play" id="play-icon"></i>
         </div>
-            
+
+        <div class="button small" id="next">
+          <i class="fa fa-forward"></i>
+        </div>
+
+        <button id="volume-btn">
+          <i class="fa fa-volume-down"></i>
+        </button>
+        <div class="volume-slider">
+          <input type="range" id="volume" min="0" max="100" value="50" />
+        </div>
+        <!-- <img src="snd-wave.png" alt="" style="display: block; width: 100%;position: absolute; top:-184px; left:0; z-index: 0; opacity: .1"> -->
+      </div>
     </div>
 
-</body>
+    <script src="app.js"></script>
+    <script src="vanilla-tilt.min.js"></script>
 
+    <script type="text/javascript">
+      VanillaTilt.init(document.querySelectorAll(".button"), {
+        max: 20,
+        speed: 200,
+        glare: true,
+        "max-glare": 0.4,
+        perspective: 1000,
+        reverse: true,
+        scale: 1,
+      });
+    </script>
+  </body>
 </html>
 
-
 <!-- instagram: web.script
-github: github.com/xcripts
+github: github.com/miladxdev
 © 2021 Milad Gharibi. All rights reserved -->

@@ -60,6 +60,7 @@ function nowPlayingBorder() {
 
 
 function playSong() {
+
     if(currentSrc != nowPlaying.src) {
         // change song.src only if track has changed
         song.src = nowPlaying.src;
@@ -177,5 +178,5 @@ document.body.addEventListener("keydown", event => {
 });
 
 // instagram: web.script
-// github: github.com/xcripts
+// github: github.com/miladxdev
 // © 2021 Milad Gharibi. All rights reserved
