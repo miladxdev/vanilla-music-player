@@ -21,8 +21,8 @@ body {
   flex-direction: column;
   justify-content: space-between;
   width: 320px;
-  height: 590px;
-  padding: 20px;
+  height: 600px;
+  padding: 15px;
 
   background: #fafafa;
   box-shadow: 0px 0px 30px -8px #bcc2cc, 8px 0 20px -10px hsl(0, 0%, 80%) inset,
@@ -51,7 +51,7 @@ body {
   display: flex;
   justify-content: space-between;
   font-size: medium;
-  padding: 4px;
+  padding: 10px;
   color: grey;
 }
 

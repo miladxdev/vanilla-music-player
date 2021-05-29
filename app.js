@@ -139,8 +139,8 @@ function secondsToMinutes(sec) {
 song.addEventListener("timeupdate", function() {
     if (!touch) { // if user not clicking on [input:range], match song's current time to [input:range] 
         slider.value = song.currentTime;
-        timeLeft.innerHTML = secondsToMinutes(song.currentTime);
-        timeRemain.innerHTML = secondsToMinutes(song.duration - song.currentTime);
+        timeLeft.innerHTML = song.currentTime ? secondsToMinutes(song.currentTime) : '00:00';
+        timeRemain.innerHTML = song.currentTime ? secondsToMinutes(song.duration - song.currentTime) : '00:00';
     }
   
 });
