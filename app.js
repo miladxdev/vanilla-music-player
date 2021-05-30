@@ -124,7 +124,7 @@ slider.addEventListener("change", function() {
     song.currentTime = slider.value;
     setInterval(() => {
         let x = ((slider.value / slider.max) * 100);
-        slider.style.background = `linear-gradient(to right, hsl(214, 45%, 84%) ${x}%, #e5ecf5 0%)`;
+        slider.style.background = `linear-gradient(to right, hsl(214, 45%, 80%) ${x}%, hsl(214, 44%, 90%) 0%)`;
     }, 10);
 });
 

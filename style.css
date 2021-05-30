@@ -7,7 +7,11 @@
 
 body {
   height: 100vh;
-  background: linear-gradient(to bottom right, #e5ecf5, hsl(265, 44%, 90%));
+  background: linear-gradient(
+    to bottom right,
+    hsl(214, 44%, 89%),
+    hsl(224, 44%, 89%)
+  );
   font-family: "@Microsoft Yahei Ui Light";
   user-select: none;
   display: flex;
@@ -23,9 +27,9 @@ body {
   width: 320px;
   height: 600px;
   padding: 15px;
-
   background: #fafafa;
-  box-shadow: 0px 0px 30px -8px #bcc2cc, 8px 0 20px -10px hsl(0, 0%, 80%) inset,
+  box-shadow: 0px 0px 30px -8px hsl(218, 14%, 77%),
+    8px 0 20px -10px hsl(0, 0%, 80%) inset,
     -8px 0 20px -10px hsl(0, 0%, 80%) inset;
 
   font-size: 26px;
@@ -42,7 +46,6 @@ body {
   width: 50%;
   height: 40px;
   border-radius: 0 0 20px 20px;
-  /* background: grey; */
   border: 4px solid rgb(231, 231, 231);
   border-top: none;
 }
@@ -51,7 +54,7 @@ body {
   display: flex;
   justify-content: space-between;
   font-size: medium;
-  padding: 10px;
+  padding: 10px 10px 0px 10px;
   color: grey;
 }
 
@@ -59,14 +62,13 @@ body {
   position: relative;
   border-radius: 20px;
   overflow: hidden;
-  /* transform: rotateZ(50deg); */
 }
 
 .cover-container > img {
   display: block;
   width: 100%;
   border-radius: 20px;
-  opacity: 0.8;
+  opacity: 0.78;
 }
 
 .track-container {
@@ -90,11 +92,7 @@ body {
   display: flex;
   align-items: center;
   padding-right: 10px;
-  /* margin-bottom: 20px; */
   background: rgba(250, 250, 250, 0.4);
-  /* border: 2px solid #5a86bf79; */
-  /* text-align: center; */
-  /* box-shadow: 0 0 2px 2px #5a86bf79; */
   box-shadow: 0 0 2px 2px #00000008;
   border-radius: 10px;
   transition: box-shadow 0.5s;
@@ -116,7 +114,9 @@ body {
     clear: both;
 } */
 
-/* .info { margin-top: 10px; } */
+.info {
+  margin-top: 16px;
+}
 .info small {
   display: block;
   margin-top: 10px;
@@ -135,11 +135,7 @@ input#slider {
   height: 6px;
   outline: none;
   border-radius: 50%;
-  background: hsl(214, 44%, 92%);
-  /* background: red; */
-  /* background: linear-gradient(to right, hsl(214, 45%, 85%) 50%, #e5ecf5 0%); */
-  /* border-radius: 10px; */
-
+  background: hsl(214, 44%, 90%);
   transition: 0.2s;
   cursor: pointer;
 }
@@ -152,7 +148,6 @@ input#slider::-webkit-slider-thumb {
   height: 14px;
   border-radius: 50%;
   background: hsl(214, 44%, 80%);
-
   transition: 0.1s;
   cursor: grab;
 }
@@ -182,9 +177,8 @@ input#slider::-webkit-slider-thumb:hover {
   width: 70px;
   height: 70px;
   border-radius: 50px;
+  border: 1px solid hsl(214, 44%, 85%);
   background: hsl(214, 44%, 90%);
-  /* box-shadow: 0 0 10px hsl(214, 44%, 65%); */
-  /* border: 1px solid hsl(214, 44%, 85%); */
   cursor: pointer;
   /* transition: .3s; */
 }
@@ -212,10 +206,6 @@ input#slider::-webkit-slider-thumb:hover {
 }
 
 input#volume {
-  /* position: absolute; */
-  /* transform: translateX(-50%); */
-  /* width: 80%; */
-  /* bottom: 20px; left: 50%; */
   transform: translateY(-9px);
   -webkit-appearance: none;
   height: 2px;
@@ -223,21 +213,13 @@ input#volume {
   background: hsl(214, 44%, 89%);
   border-radius: 50%;
   cursor: pointer;
-  /* transition: 1s ease-out; */
-  /* opacity: 0; */
-  /* z-index: 100; */
 }
 input#volume::-webkit-slider-thumb {
   -webkit-appearance: none;
   width: 22px;
   height: 22px;
   border-radius: 50%;
-  /* border: 1px solid grey; */
   background: hsl(214, 44%, 70%);
-  /* background: url(icon/medium_volume.svg) #fafafa; */
-  /* background-size: 80%;
-    background-position: center;
-    background-repeat: no-repeat; */
   cursor: grab;
 }
 
@@ -253,8 +235,8 @@ input#volume::-webkit-slider-thumb {
   transform: scale(1.4);
   color: grey;
 }
+
 .volume-slider {
-  /* display: none; */
   opacity: 0;
   visibility: hidden;
   position: absolute;
@@ -263,9 +245,7 @@ input#volume::-webkit-slider-thumb {
   transform: translateY(10px);
   width: 50%;
   background: hsl(0, 0%, 98%);
-  /* border: 1px solid hsl(0, 0%, 92%); */
   box-shadow: 0px 0px 8px 2px rgba(0, 0, 0, 0.1);
-  /* border: 1px solid red; */
   border-radius: 40px;
   transition: 0.3s;
 }
@@ -287,6 +267,7 @@ input#volume::-webkit-slider-thumb {
 .effect {
   animation: fade 0.5s ease-in-out;
 }
+
 @keyframes fade {
   0% {
     transform: scale(1);
@@ -298,6 +279,9 @@ input#volume::-webkit-slider-thumb {
     transform: scale(1);
   }
 }
-/* instagram: web.script
-github: github.com/miladxdev
-© 2021 Milad Gharibi. All rights reserved */
+
+/* 
+  instagram: web.script
+  github: github.com/miladxdev
+  © 2021 Milad Gharibi. All rights reserved 
+*/
