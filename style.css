@@ -7,11 +7,7 @@
 
 body {
   height: 100vh;
-  background: linear-gradient(
-    to bottom right,
-    hsl(214, 44%, 89%),
-    hsl(224, 44%, 89%)
-  );
+  background: linear-gradient(to bottom right, hsl(214, 44%, 89%), hsl(224, 44%, 89%));
   font-family: "@Microsoft Yahei Ui Light";
   user-select: none;
   display: flex;
@@ -26,11 +22,9 @@ body {
   justify-content: space-between;
   width: 320px;
   height: 600px;
-  padding: 15px;
+  padding: 12px;
   background: #fafafa;
-  box-shadow: 0px 0px 30px -8px hsl(218, 14%, 77%),
-    8px 0 20px -10px hsl(0, 0%, 80%) inset,
-    -8px 0 20px -10px hsl(0, 0%, 80%) inset;
+  box-shadow: 0px 0px 30px -8px hsl(218, 14%, 77%), 8px 0 20px -10px hsl(0, 0%, 80%) inset, -8px 0 20px -10px hsl(0, 0%, 80%) inset;
 
   font-size: 26px;
   text-align: center;
@@ -280,6 +274,86 @@ input#volume::-webkit-slider-thumb {
   }
 }
 
+/* <toggle-switch> */
+.toggle-switch {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 34px;
+  margin: 20px;
+}
+.toggle-switch .checkbox {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+.switch-btn {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-color: #dadada;
+  /* box-shadow: 0 0 4px 0 lightcoral; */
+  cursor: pointer;
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
+}
+.switch-btn::before {
+  position: absolute;
+  content: "";
+  height: 26px;
+  width: 26px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  /* -webkit-transition: 0.5s; */
+  /* transition: 0.5s; */
+  transition: 0.4s cubic-bezier(0.18, 0.89, 0.35, 1.15) all;
+}
+.switch-btn:active:before {
+  width: 40px;
+}
+.checkbox:checked + .switch-btn {
+  background-color: lightgreen;
+  box-shadow: 0 0 8px 0 lightgreen;
+}
+.checkbox:checked + .switch-btn::before {
+  /* -webkit-transform: translateX(26px);
+  -ms-transform: translateX(26px);
+  transform: translateX(26px); */
+  left: calc(100% - 4px);
+  transform: translateX(-100%);
+}
+.switch-btn.round,
+.switch-btn.round:before {
+  border-radius: 30px;
+}
+/* </toggle-switch> */
+
+.settings-container {
+  opacity: 0;
+  position: absolute;
+  top: 0px;
+  right: 110%;
+  overflow: hidden;
+  width: 250px;
+  height: 0;
+  padding: 14px;
+  border-radius: 20px;
+  background-color: #fafafa;
+  font-size: 1rem;
+  text-align: left;
+  transition: 0.3s;
+}
+
+.setting {
+  /* border: 1px solid blue; */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 10px;
+}
 /* 
   instagram: web.script
   github: github.com/miladxdev
