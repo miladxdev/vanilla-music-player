@@ -176,7 +176,6 @@ let settings_elem = document.querySelector(".settings-container");
 document.querySelector("#settings-btn").
 addEventListener("click", () => {
     if (settings_elem.style.height == "380px") {
-        // settings_elem.style.visibility = 'hidden';
          settings_elem.style.opacity = '0';
         settings_elem.style.height = '0';
     } else {

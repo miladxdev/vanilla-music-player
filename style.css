@@ -62,7 +62,7 @@ body {
   display: block;
   width: 100%;
   border-radius: 20px;
-  opacity: 0.78;
+  opacity: 0.8;
 }
 
 .track-container {
@@ -88,9 +88,13 @@ body {
   padding-right: 10px;
   background: rgba(250, 250, 250, 0.4);
   box-shadow: 0 0 2px 2px #00000008;
-  border-radius: 10px;
+  border-radius: 5px;
   transition: box-shadow 0.5s;
   overflow: hidden;
+  cursor: pointer;
+}
+.track-list:hover {
+  background: rgba(250, 250, 250, 0.7);
 }
 .track-list img {
   display: block;
@@ -168,8 +172,8 @@ input#slider::-webkit-slider-thumb:hover {
   justify-content: center;
   align-items: center;
   font-size: 30px;
-  width: 70px;
-  height: 70px;
+  width: 75px;
+  height: 75px;
   border-radius: 50px;
   border: 1px solid hsl(214, 44%, 85%);
   background: hsl(214, 44%, 90%);
@@ -199,12 +203,31 @@ input#slider::-webkit-slider-thumb:hover {
   transform: translateX(15%);
 }
 
+.volume-slider {
+  opacity: 0;
+  visibility: hidden;
+  position: absolute;
+  top: -35px;
+  right: -19%;
+  transform: translateY(10px);
+  width: 50%;
+  background: hsl(0, 0%, 98%);
+  box-shadow: 0px 0px 4px 2px rgba(0, 0, 0, 0.1);
+  border-radius: 40px;
+  transition: 0.3s;
+}
+.volume-slider:hover {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
 input#volume {
   transform: translateY(-9px);
   -webkit-appearance: none;
   height: 2px;
   outline: none;
-  background: hsl(214, 44%, 89%);
+  background: hsl(214, 44%, 85%);
   border-radius: 50%;
   cursor: pointer;
 }
@@ -213,7 +236,7 @@ input#volume::-webkit-slider-thumb {
   width: 22px;
   height: 22px;
   border-radius: 50%;
-  background: hsl(214, 44%, 70%);
+  background: hsl(214, 44%, 65%);
   cursor: grab;
 }
 
@@ -230,24 +253,6 @@ input#volume::-webkit-slider-thumb {
   color: grey;
 }
 
-.volume-slider {
-  opacity: 0;
-  visibility: hidden;
-  position: absolute;
-  top: -35px;
-  right: -19%;
-  transform: translateY(10px);
-  width: 50%;
-  background: hsl(0, 0%, 98%);
-  box-shadow: 0px 0px 8px 2px rgba(0, 0, 0, 0.1);
-  border-radius: 40px;
-  transition: 0.3s;
-}
-.volume-slider:hover {
-  opacity: 1;
-  visibility: visible;
-  transform: translateY(0);
-}
 #volume-btn:focus > i {
   color: #5a86bf;
 }
@@ -306,7 +311,7 @@ input#volume::-webkit-slider-thumb {
   width: 26px;
   left: 4px;
   bottom: 4px;
-  background-color: white;
+  background-color: #fafafa;
   /* -webkit-transition: 0.5s; */
   /* transition: 0.5s; */
   transition: 0.4s cubic-bezier(0.18, 0.89, 0.35, 1.15) all;
@@ -330,7 +335,6 @@ input#volume::-webkit-slider-thumb {
   border-radius: 30px;
 }
 /* </toggle-switch> */
-
 .settings-container {
   opacity: 0;
   position: absolute;
