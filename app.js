@@ -33,14 +33,14 @@ song.volume = 0.5;
 
 
 // change volume
-volume.addEventListener("input", function () {
+volume.addEventListener("input", () => {
     song.volume = volume.value / 100;
 });
 
 song.src = nowPlaying.src;
 let currentSrc = nowPlaying.src;
 
-song.onloadeddata = function () {
+song.onloadeddata = () => {
     duration = song.duration;
     slider.max = duration;
     // console.log(duration);
@@ -48,7 +48,7 @@ song.onloadeddata = function () {
 
 
 // functions
-function nowPlayingBorder() {
+nowPlayingHighlight = () => {
     // SHOW border for now playing song when click on menu
     const trackLists = document.querySelectorAll(".track-list");
     for (let i = 0; i < trackLists.length; i++) {
@@ -59,7 +59,7 @@ function nowPlayingBorder() {
 
 
 
-function playSong() {
+playSong = () => {
 
     if (currentSrc != nowPlaying.src) {
         // change song.src only if track has changed
@@ -71,7 +71,7 @@ function playSong() {
         document.querySelector('#cover').classList.add('effect');
     }
 
-    nowPlayingBorder();
+    nowPlayingHighlight();
 
     if (!isPlaying) {
         // update music info
@@ -95,7 +95,7 @@ function playSong() {
 // Control Buttons
 playBtn.addEventListener("click", playSong);
 
-nextBtn.addEventListener("click", function () {
+nextBtn.addEventListener("click", () => {
     track++;
     if (track > playList.length - 1) track = 0;
 
@@ -104,7 +104,7 @@ nextBtn.addEventListener("click", function () {
     playSong();
 });
 
-backBtn.addEventListener("click", function () {
+backBtn.addEventListener("click", () => {
     track--;
     if (track < 0) track = playList.length - 1;
 
@@ -117,10 +117,10 @@ backBtn.addEventListener("click", function () {
 
 // range slider
 let touch = false;
-slider.addEventListener("mousedown", function () { touch = true; });
-slider.addEventListener("mouseup", function () { touch = false; });
+slider.addEventListener("mousedown", () =>  touch = true);
+slider.addEventListener("mouseup", () => touch = false);
 
-slider.addEventListener("change", function () {
+slider.addEventListener("change", () => {
     song.currentTime = slider.value;
     setInterval(() => {
         let x = ((slider.value / slider.max) * 100);
@@ -128,15 +128,14 @@ slider.addEventListener("change", function () {
     }, 10);
 });
 
-
-function secondsToMinutes(sec) {
+secondsToMinutes = sec => {
     return Math.floor(sec / 60).toString().padStart(2, '0') + ':' +
-        Math.floor(sec % 60).toString().padStart(2, '0');
+           Math.floor(sec % 60).toString().padStart(2, '0');
 }
 
 
 // song events
-song.addEventListener("timeupdate", function () {
+song.addEventListener("timeupdate", () => {
     if (!touch) { // if user not clicking on [input:range], match song's current time to [input:range] 
         slider.value = song.currentTime;
         timeLeft.innerHTML = song.currentTime ? secondsToMinutes(song.currentTime) : '00:00';
@@ -148,7 +147,6 @@ song.addEventListener("timeupdate", function () {
 song.addEventListener("ended", () => {
     track++;
     if (track > playList.length - 1) track = 0;
-
     nowPlaying = playList[track];
     isPlaying = false;
     playSong();

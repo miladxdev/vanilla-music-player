@@ -207,8 +207,8 @@ input#slider::-webkit-slider-thumb:hover {
   opacity: 0;
   visibility: hidden;
   position: absolute;
-  top: -35px;
-  right: -19%;
+  top: -30px;
+  right: -20%;
   transform: translateY(10px);
   width: 50%;
   background: hsl(0, 0%, 98%);
@@ -324,9 +324,6 @@ input#volume::-webkit-slider-thumb {
   box-shadow: 0 0 8px 0 lightgreen;
 }
 .checkbox:checked + .switch-btn::before {
-  /* -webkit-transform: translateX(26px);
-  -ms-transform: translateX(26px);
-  transform: translateX(26px); */
   left: calc(100% - 4px);
   transform: translateX(-100%);
 }
@@ -352,7 +349,6 @@ input#volume::-webkit-slider-thumb {
 }
 
 .setting {
-  /* border: 1px solid blue; */
   display: flex;
   justify-content: space-between;
   align-items: center;
