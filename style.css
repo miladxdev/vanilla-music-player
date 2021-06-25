@@ -89,7 +89,6 @@ input#slider {
   outline: none;
   border-radius: 50%;
   background: hsl(214, 44%, 90%);
-  box-shadow: 0 0 8px hsl(214, 44%, 90%);
   transition: 0.2s;
   cursor: pointer;
 }
@@ -312,14 +311,15 @@ input#volume::-webkit-slider-thumb {
 }
 
 .tracks-container {
-  display: flex;
+  /* display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: space-between; */
   opacity: 0;
   position: absolute;
   top: 0px;
   left: 110%;
-  overflow: hidden;
+  overflow-y: scroll;
+  overflow-x: hidden;
   width: 250px;
   height: 0px;
   padding: 14px;
@@ -329,6 +329,30 @@ input#volume::-webkit-slider-thumb {
   text-align: left;
   transition: 0.3s;
 }
+/* .tracks-container::-webkit-scrollbar {
+  width: 10px;
+}
+.tracks-container::-webkit-scrollbar-track {
+  color: #333;
+} */
+.tracks-container::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+.tracks-container::-webkit-scrollbar-track {
+  background: none;
+}
+
+/* Handle */
+.tracks-container::-webkit-scrollbar-thumb {
+  background: #d8d8d8;
+}
+
+/* Handle on hover */
+.tracks-container::-webkit-scrollbar-thumb:hover {
+  background: #c3ddff;
+}
 .trak-header {
   display: flex;
   justify-content: space-between;
@@ -337,6 +361,7 @@ input#volume::-webkit-slider-thumb {
   display: flex;
   align-items: center;
   padding-right: 10px;
+  margin-top: 20px;
   background: #f0f0f0;
   /* box-shadow: 0 0 2px 2px #00000008; */
   border-radius: 5px;
@@ -368,8 +393,8 @@ input.file {
 .file-container label {
   display: block;
   position: relative;
-  width: 40px;
-  height: 40px;
+  width: 30px;
+  height: 30px;
   border-radius: 50%;
   background: linear-gradient(40deg, #be6eff, #7873f5);
   display: flex;
