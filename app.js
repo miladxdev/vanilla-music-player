@@ -150,7 +150,7 @@ song.addEventListener("ended", () => {
 });
 
 const menuBtn = document.getElementById("menu-btn");
-const trackContainer = document.querySelector(".track-container");
+const trackContainer = document.querySelector(".tracks-container");
 trackContainer.style.bottom = "101%"; // fix working for first time
 
 menuBtn.addEventListener("click", (e) => {
@@ -184,6 +184,36 @@ document.querySelector("#settings-btn").addEventListener("click", (e) => {
 // play|pause with spacebar key
 document.body.addEventListener("keydown", (event) => {
   if (event.keyCode == 32) playSong();
+});
+
+const inputAudio = document.querySelector("#file");
+inputAudio.addEventListener("change", () => {
+  var path = window.URL.createObjectURL(inputAudio.files[0]);
+
+  let userMusic = {
+    title: inputAudio.files[0].name,
+    artist: "unknown",
+    src: path,
+    cover: "cover/default.png",
+  };
+
+  playList = [...playList, userMusic];
+
+  console.log(playList);
+
+  let div = document.createElement("div");
+  div.className = "track-list";
+
+  let img = document.createElement("img");
+  img.setAttribute("src", "cover/default.png");
+  div.appendChild(img);
+
+  document.createElement("p");
+  let text = document.createTextNode(inputAudio.files[0].name);
+  div.appendChild(text);
+
+  let traksContainer = document.querySelector(".tracks-container");
+  traksContainer.appendChild(div);
 });
 
 // instagram: web.script
