@@ -57,7 +57,7 @@ body {
 .cover-container {
   position: relative;
   border-radius: 20px;
-  overflow: hidden;
+  /* overflow: hidden; */
 }
 
 .cover-container > img {
@@ -89,6 +89,7 @@ input#slider {
   outline: none;
   border-radius: 50%;
   background: hsl(214, 44%, 90%);
+  box-shadow: 0 0 8px hsl(214, 44%, 90%);
   transition: 0.2s;
   cursor: pointer;
 }
@@ -310,11 +311,10 @@ input#volume::-webkit-slider-thumb {
   margin-top: 10px;
 }
 
-.track-container {
+.tracks-container {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-
   opacity: 0;
   position: absolute;
   top: 0px;
@@ -329,7 +329,10 @@ input#volume::-webkit-slider-thumb {
   text-align: left;
   transition: 0.3s;
 }
-
+.trak-header {
+  display: flex;
+  justify-content: space-between;
+}
 .track-list {
   display: flex;
   align-items: center;
@@ -353,6 +356,29 @@ input#volume::-webkit-slider-thumb {
 }
 .track-list small {
   display: block;
+}
+
+input.file {
+  opacity: 0;
+  width: 0.1px;
+  height: 0.1px;
+  position: absolute;
+}
+
+.file-container label {
+  display: block;
+  position: relative;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: linear-gradient(40deg, #be6eff, #7873f5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  font-weight: bold;
+  cursor: pointer;
+  transition: transform 0.2s ease-out;
 }
 /* 
   instagram: web.script
