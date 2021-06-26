@@ -25,6 +25,7 @@ body {
   padding: 12px;
   background: #fafafa;
   box-shadow: 0px 0px 30px -8px hsl(218, 14%, 77%), 8px 0 20px -10px hsl(0, 0%, 80%) inset, -8px 0 20px -10px hsl(0, 0%, 80%) inset;
+
   font-size: 26px;
   text-align: center;
   border-radius: 40px;
@@ -50,6 +51,24 @@ body {
   padding: 10px 10px 0px 10px;
   color: grey;
 }
+
+.btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  transition: background 0.2s;
+  cursor: pointer;
+}
+.btn:hover {
+  background: rgba(0, 0, 0, 0.05);
+}
+.btn:active {
+  background: rgba(0, 0, 0, 0.1);
+}
+
 #settings-btn,
 #menu-btn {
   cursor: pointer;
@@ -127,8 +146,8 @@ input#slider::-webkit-slider-thumb:hover {
   justify-content: center;
   align-items: center;
   font-size: 30px;
-  width: 75px;
-  height: 75px;
+  width: 76px;
+  height: 76px;
   border-radius: 50px;
   border: 1px solid hsl(214, 44%, 85%);
   background: hsl(214, 44%, 90%);
@@ -151,6 +170,7 @@ input#slider::-webkit-slider-thumb:hover {
 .button#back i {
   transform: translateX(-15%);
 }
+
 .button#play i {
   transform: translateX(10%);
 }
@@ -196,7 +216,6 @@ input#volume::-webkit-slider-thumb {
 }
 
 #volume-btn {
-  /* border: 2px solid red; */
   border: none;
   outline: none;
   background: transparent;
@@ -254,7 +273,6 @@ input#volume::-webkit-slider-thumb {
   bottom: 0;
   left: 0;
   background-color: #dadada;
-  /* box-shadow: 0 0 4px 0 lightcoral; */
   cursor: pointer;
   -webkit-transition: 0.4s;
   transition: 0.4s;
@@ -329,41 +347,34 @@ input#volume::-webkit-slider-thumb {
   text-align: left;
   transition: 0.3s;
 }
-/* .tracks-container::-webkit-scrollbar {
-  width: 10px;
-}
-.tracks-container::-webkit-scrollbar-track {
-  color: #333;
-} */
+
 .tracks-container::-webkit-scrollbar {
   width: 10px;
 }
 
-/* Track */
 .tracks-container::-webkit-scrollbar-track {
   background: none;
 }
 
-/* Handle */
 .tracks-container::-webkit-scrollbar-thumb {
   background: #d8d8d8;
 }
 
-/* Handle on hover */
 .tracks-container::-webkit-scrollbar-thumb:hover {
   background: #c3ddff;
 }
+
 .trak-header {
   display: flex;
   justify-content: space-between;
 }
+
 .track-list {
   display: flex;
   align-items: center;
   padding-right: 10px;
   margin-top: 20px;
   background: #f0f0f0;
-  /* box-shadow: 0 0 2px 2px #00000008; */
   border-radius: 5px;
   transition: box-shadow 0.5s;
   overflow: hidden;
@@ -405,6 +416,7 @@ input.file {
   cursor: pointer;
   transition: transform 0.2s ease-out;
 }
+
 /* 
   instagram: web.script
   github: github.com/miladxdev

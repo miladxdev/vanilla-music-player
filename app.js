@@ -17,12 +17,12 @@ const backBtn = document.getElementById("back");
 let isPlaying = false;
 let duration = 0;
 let currentTime = 0;
-
+// prettier-ignore
 let playList = [
-  { title: "Time", artist: "Alan Walker & Hans Zimmer", src: "music/Time (Alan Walker Remix).m4a", cover: "cover/Time.jpg" },
-  { title: "In The End", artist: "Fleurie", src: "music/In The End (remix).mp3", cover: "cover/In The End.jpg" },
-  { title: "Algorithm", artist: "Muse", src: "music/01. Algorithm.mp3", cover: "cover/Simulation.Theory.jpg" },
-  { title: "Never Fade Away", artist: "Olga Jankowska", src: "music/Never Fade Away.mp3", cover: "cover/Cyberpunk.jpg" },
+  { title: "Time",            artist: "Alan Walker & Hans Zimmer",  src: "music/Time.m4a",            cover: "img/cover/Time.jpg"             },
+  { title: "In The End",      artist: "Fleurie",                    src: "music/In-The-End.mp3",      cover: "img/cover/In-The-End.jpg"       },
+  { title: "Algorithm",       artist: "Muse",                       src: "music/Algorithm.mp3",       cover: "img/cover/Algorithm.jpg"        },
+  { title: "Never Fade Away", artist: "Olga Jankowska",             src: "music/Never-Fade-Away.mp3", cover: "img/cover/Never-Fade-Away.jpg"  },
 ];
 
 let track = 0;
@@ -194,7 +194,7 @@ inputAudio.addEventListener("change", () => {
     title: inputAudio.files[0].name,
     artist: "unknown",
     src: path,
-    cover: "cover/default.png",
+    cover: "img/cover/default.png",
   };
 
   playList = [...playList, userMusic];
@@ -205,7 +205,7 @@ inputAudio.addEventListener("change", () => {
   div.className = "track-list";
 
   let img = document.createElement("img");
-  img.setAttribute("src", "cover/default.png");
+  img.setAttribute("src", "img/cover/default.png");
   div.appendChild(img);
 
   document.createElement("p");

@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="style.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+    <link rel="shortcut icon" href="img/logo.png" type="image/x-icon" />
     <title>vanilla music player</title>
   </head>
 
@@ -21,35 +22,35 @@
         </div>
 
         <div class="track-list">
-          <img src="cover/Time.jpg" />
+          <img src="img/cover/Time.jpg" />
           <p>Time - Alan Walker and Hans...</p>
         </div>
 
         <div class="track-list">
-          <img src="cover/In The End.jpg" />
+          <img src="img/cover/In-The-End.jpg" />
           <p>Fleurie - In The End</p>
         </div>
 
         <div class="track-list">
-          <img src="cover/Simulation.Theory.jpg" />
+          <img src="img/cover/Algorithm.jpg" />
           <p>Muse - Algorithm</p>
         </div>
 
         <div class="track-list">
-          <img src="cover/Cyberpunk.jpg" />
+          <img src="img/cover/Never-Fade-Away.jpg" />
           <p>Never Fade Away - Olga...</p>
         </div>
       </div>
 
       <div class="notch"></div>
       <div class="header">
-        <i class="fa fa-chevron-left" id="settings-btn"></i>
-        <i class="fa fa-bars" id="menu-btn"></i>
+        <div class="btn" id="settings-btn"><i class="fa fa-chevron-left"></i></div>
+        <div class="btn" id="menu-btn"><i class="fa fa-bars"></i></div>
       </div>
 
       <div class="playing">
         <div class="cover-container">
-          <img src="cover/default.png" id="cover" />
+          <img src="img/cover/default.png" id="cover" />
         </div>
 
         <div class="info">
@@ -69,7 +70,7 @@
       </div>
 
       <div class="control">
-        <i class="fa fa-random" style="font-size: 14px; color: grey"></i>
+        <div class="btn"><i class="fa fa-random" style="font-size: 14px; color: grey"></i></div>
 
         <div class="button small" id="back">
           <i class="fa fa-backward"></i>
@@ -84,12 +85,11 @@
         </div>
 
         <button id="volume-btn">
-          <i class="fa fa-volume-down"></i>
+          <div class="btn"><i class="fa fa-volume-down"></i></div>
         </button>
         <div class="volume-slider">
           <input type="range" id="volume" min="0" max="100" value="50" />
         </div>
-        <!-- <img src="snd-wave.png" alt="" style="display: block; width: 100%;position: absolute; top:-184px; left:0; z-index: 0; opacity: .1"> -->
       </div>
 
       <div class="settings-container">
