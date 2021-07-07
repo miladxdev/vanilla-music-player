@@ -17,6 +17,7 @@ const backBtn = document.getElementById("back");
 let isPlaying = false;
 let duration = 0;
 let currentTime = 0;
+
 // prettier-ignore
 let playList = [
   { title: "Time",            artist: "Alan Walker & Hans Zimmer",  src: "music/Time.m4a",            cover: "img/cover/Time.jpg"             },
@@ -27,7 +28,7 @@ let playList = [
 
 let track = 0;
 let nowPlaying = playList[track];
-// audio object
+
 let song = new Audio();
 song.volume = 0.5;
 
@@ -46,7 +47,7 @@ song.onloadeddata = () => {
 };
 
 // functions
-nowPlayingHighlight = () => {
+const nowPlayingHighlight = () => {
   // SHOW border for now playing song when click on menu
   const trackLists = document.querySelectorAll(".track-list");
   for (let i = 0; i < trackLists.length; i++) {
@@ -55,7 +56,7 @@ nowPlayingHighlight = () => {
   trackLists[track].style.boxShadow = "0 0 0 2px #5a86bf79";
 };
 
-playSong = () => {
+const playSong = () => {
   if (currentSrc != nowPlaying.src) {
     // change song.src only if track has changed
     song.src = nowPlaying.src;
@@ -106,20 +107,17 @@ backBtn.addEventListener("click", () => {
   playSong();
 });
 
-// range slider
-let touch = false;
-slider.addEventListener("mousedown", () => (touch = true));
-slider.addEventListener("mouseup", () => (touch = false));
-
+// Range slider events ---
 slider.addEventListener("change", () => {
   song.currentTime = slider.value;
+  // update slider background
   setInterval(() => {
     let x = (slider.value / slider.max) * 100;
     slider.style.background = `linear-gradient(to right, hsl(214, 45%, 80%) ${x}%, hsl(214, 44%, 90%) 0%)`;
   }, 10);
 });
 
-secondsToMinutes = (sec) => {
+const secondsToMinutes = (sec) => {
   return (
     Math.floor(sec / 60)
       .toString()
@@ -131,13 +129,20 @@ secondsToMinutes = (sec) => {
   );
 };
 
-// song events
+let touch = false;
+slider.addEventListener("mousedown", () => (touch = true));
+slider.addEventListener("mouseup", () => (touch = false));
+
+// ---- Song events
 song.addEventListener("timeupdate", () => {
   if (!touch) {
-    // if user not clicking on [input:range], match song's current time to [input:range]
+    // if user not clicking on slider, update song time
     slider.value = song.currentTime;
     timeLeft.innerHTML = song.currentTime ? secondsToMinutes(song.currentTime) : "00:00";
     timeRemain.innerHTML = song.currentTime ? secondsToMinutes(song.duration - song.currentTime) : "00:00";
+    // update sider background
+    let x = (slider.value / slider.max) * 100;
+    slider.style.background = `linear-gradient(to right, hsl(214, 45%, 80%) ${x}%, hsl(214, 44%, 90%) 0%)`;
   }
 });
 
@@ -149,6 +154,7 @@ song.addEventListener("ended", () => {
   playSong();
 });
 
+// --- Buttons events
 const menuBtn = document.getElementById("menu-btn");
 const trackContainer = document.querySelector(".tracks-container");
 trackContainer.style.bottom = "101%"; // fix working for first time
@@ -182,11 +188,12 @@ document.querySelector("#settings-btn").addEventListener("click", (e) => {
   }
 });
 
-// play|pause with spacebar key
+// play|pause with [spacebar] key
 document.body.addEventListener("keydown", (event) => {
   if (event.keyCode == 32) playSong();
 });
 
+// get user music
 const inputAudio = document.querySelector("#file");
 inputAudio.addEventListener("change", () => {
   var path = window.URL.createObjectURL(inputAudio.files[0]);
@@ -203,6 +210,7 @@ inputAudio.addEventListener("change", () => {
   createTrackNode();
 });
 
+// creates a track component in tracks section
 function createTrackNode() {
   const div = document.createElement("div");
   div.className = "track-list";
