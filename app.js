@@ -168,6 +168,7 @@ menuBtn.addEventListener("click", (e) => {
 
 // toggle settings
 let settings_elem = document.querySelector(".settings-container");
+
 document.querySelector("#settings-btn").addEventListener("click", (e) => {
   if (settings_elem.style.height == "380px") {
     settings_elem.style.opacity = "0";
@@ -199,22 +200,24 @@ inputAudio.addEventListener("change", () => {
 
   playList = [...playList, userMusic];
 
-  console.log(playList);
+  createTrackNode();
+});
 
-  let div = document.createElement("div");
+function createTrackNode() {
+  const div = document.createElement("div");
   div.className = "track-list";
 
-  let img = document.createElement("img");
+  const img = document.createElement("img");
   img.setAttribute("src", "img/cover/default.png");
   div.appendChild(img);
 
   document.createElement("p");
-  let text = document.createTextNode(inputAudio.files[0].name);
+  const text = document.createTextNode(inputAudio.files[0].name);
   div.appendChild(text);
 
-  let traksContainer = document.querySelector(".tracks-container");
+  const traksContainer = document.querySelector(".tracks-container");
   traksContainer.appendChild(div);
-});
+}
 
 // instagram: web.script
 // github: github.com/miladxdev

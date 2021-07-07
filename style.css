@@ -1,5 +1,4 @@
 * {
-  /* border: 1px dashed blue; */
   box-sizing: border-box;
   margin: 0;
   padding: 0;
@@ -24,12 +23,14 @@ body {
   height: 610px;
   padding: 12px;
   background: #fafafa;
-  box-shadow: 0px 0px 30px -8px hsl(218, 14%, 77%), 8px 0 20px -10px hsl(0, 0%, 80%) inset, -8px 0 20px -10px hsl(0, 0%, 80%) inset;
-
+  /* prettier-ignore */
+  box-shadow: 
+    0px 0px 30px -8px hsl(218, 14%, 77%),
+    8px 0 20px -10px hsl(0, 0%, 80%) inset,
+    -8px 0 20px -10px hsl(0, 0%, 80%) inset;
   font-size: 26px;
   text-align: center;
   border-radius: 40px;
-  /* overflow: hidden; */
 }
 
 .notch {
@@ -63,10 +64,10 @@ body {
   cursor: pointer;
 }
 .btn:hover {
-  background: rgba(0, 0, 0, 0.05);
+  background: #0000000d;
 }
 .btn:active {
-  background: rgba(0, 0, 0, 0.1);
+  background: #0000001a;
 }
 
 #settings-btn,
