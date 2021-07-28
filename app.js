@@ -1,6 +1,7 @@
+const selectElem = (e) => document.querySelector(e);
 // DOM elements
 const coverImg = document.getElementById("cover");
-const volume = document.getElementById("volume");
+
 const title = document.getElementById("title");
 const artist = document.getElementById("artist");
 
@@ -33,8 +34,22 @@ let song = new Audio();
 song.volume = 0.5;
 
 // change volume
-volume.addEventListener("input", () => {
-  song.volume = volume.value / 100;
+const volumeIcon = selectElem("#volume-btn i");
+const inputVolume = selectElem("#input-volume");
+inputVolume.addEventListener("input", () => {
+  if (!selectElem("#toggle-mute").checked) {
+    song.volume = inputVolume.value / 100;
+  }
+
+  if (!song.volume) {
+    volumeIcon.style.color = "lightcoral";
+    volumeIcon.className = "fas fa-volume-mute";
+  } else if (song.volume < 0.7) {
+    volumeIcon.style.color = "grey";
+    volumeIcon.className = "fa fa-volume-down";
+  } else {
+    volumeIcon.className = "fas fa-volume-up";
+  }
 });
 
 song.src = nowPlaying.src;
@@ -62,16 +77,16 @@ const playSong = () => {
     song.src = nowPlaying.src;
     currentSrc = nowPlaying.src;
 
-    document.querySelector("#cover").classList.remove("effect");
-    void document.querySelector("#cover").offsetWidth;
-    document.querySelector("#cover").classList.add("effect");
+    selectElem("#cover").classList.remove("effect");
+    void selectElem("#cover").offsetWidth;
+    selectElem("#cover").classList.add("effect");
   }
 
   nowPlayingHighlight();
 
   if (!isPlaying) {
     // update music info
-    coverImg.src = nowPlaying.cover;
+    selectElem("#cover").src = nowPlaying.cover;
     title.innerHTML = nowPlaying.title;
     artist.innerHTML = nowPlaying.artist;
     playIcon.className = "fa fa-pause";
@@ -135,6 +150,8 @@ slider.addEventListener("mouseup", () => (touch = false));
 
 // ---- Song events
 song.addEventListener("timeupdate", () => {
+  selectElem("#toggle-mute").checked ? (song.volume = 0) : (song.volume = inputVolume.value / 100);
+
   if (!touch) {
     // if user not clicking on slider, update song time
     slider.value = song.currentTime;
@@ -156,7 +173,7 @@ song.addEventListener("ended", () => {
 
 // --- Buttons events
 const menuBtn = document.getElementById("menu-btn");
-const trackContainer = document.querySelector(".tracks-container");
+const trackContainer = selectElem(".tracks-container");
 trackContainer.style.bottom = "101%"; // fix working for first time
 
 menuBtn.addEventListener("click", (e) => {
@@ -173,9 +190,9 @@ menuBtn.addEventListener("click", (e) => {
 });
 
 // toggle settings
-let settings_elem = document.querySelector(".settings-container");
+let settings_elem = selectElem(".settings-container");
 
-document.querySelector("#settings-btn").addEventListener("click", (e) => {
+selectElem("#settings-btn").addEventListener("click", (e) => {
   if (settings_elem.style.height == "380px") {
     settings_elem.style.opacity = "0";
     settings_elem.style.height = "0";
@@ -194,7 +211,7 @@ document.body.addEventListener("keydown", (event) => {
 });
 
 // get user music
-const inputAudio = document.querySelector("#file");
+const inputAudio = selectElem("#file");
 inputAudio.addEventListener("change", () => {
   var path = window.URL.createObjectURL(inputAudio.files[0]);
 
@@ -223,9 +240,23 @@ function createTrackNode() {
   const text = document.createTextNode(inputAudio.files[0].name);
   div.appendChild(text);
 
-  const traksContainer = document.querySelector(".tracks-container");
+  const traksContainer = selectElem(".tracks-container");
   traksContainer.appendChild(div);
 }
+
+// volToggle Switch
+selectElem("#toggle-mute").addEventListener("change", function () {
+  if (this.checked) {
+    volumeIcon.style.color = "lightcoral";
+    volumeIcon.className = "fas fa-volume-mute";
+  } else if (song.volume < 0.7) {
+    volumeIcon.style.color = "grey";
+    volumeIcon.className = "fa fa-volume-down";
+  } else {
+    volumeIcon.className = "fas fa-volume-up";
+    volumeIcon.style.color = "grey";
+  }
+});
 
 // instagram: web.script
 // github: github.com/miladxdev

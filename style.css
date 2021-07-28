@@ -1,7 +1,15 @@
-* {
+*,
+*::before,
+*::after {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
+}
+
+[data-theme="dark"] {
+  --bg-body: #333;
+  --bg-component: #222;
+  --color-primary: white;
 }
 
 body {
@@ -24,10 +32,16 @@ body {
   padding: 12px;
   background: #fafafa;
   /* prettier-ignore */
+  /* box-shadow: 
+    0px 0px 30px -8px hsl(218, 14%, 67%),
+    8px 0 20px -10px hsl(0, 0%, 75%) inset,
+    -8px 0 20px -10px hsl(0, 0%, 75%) inset; */
+  /* prettier-ignore */
   box-shadow: 
-    0px 0px 30px -8px hsl(218, 14%, 77%),
-    8px 0 20px -10px hsl(0, 0%, 80%) inset,
-    -8px 0 20px -10px hsl(0, 0%, 80%) inset;
+      0px 0px 30px -8px hsl(218, 14%, 67%),
+      10px 0 20px -10px hsl(0, 0%, 80%) inset,
+      -10px 0 20px -10px hsl(0, 0%, 80%) inset;
+
   font-size: 26px;
   text-align: center;
   border-radius: 40px;
@@ -57,17 +71,17 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 30px;
-  height: 30px;
-  border-radius: 50%;
+  width: 32px;
+  height: 32px;
+  border-radius: 100%;
   transition: background 0.2s;
   cursor: pointer;
 }
 .btn:hover {
-  background: #0000000d;
+  background: hsl(214, 30%, 90%);
 }
 .btn:active {
-  background: #0000001a;
+  background: hsl(214, 30%, 85%);
 }
 
 #settings-btn,
@@ -78,6 +92,7 @@ body {
   position: relative;
   border-radius: 20px;
   /* overflow: hidden; */
+  z-index: 1;
 }
 
 .cover-container > img {
@@ -139,7 +154,7 @@ input#slider::-webkit-slider-thumb:hover {
   display: flex;
   justify-content: space-around;
   align-items: center;
-  color: #333;
+  color: rgb(60, 60, 65);
 }
 
 .button {
@@ -198,7 +213,7 @@ input#slider::-webkit-slider-thumb:hover {
   transform: translateY(0);
 }
 
-input#volume {
+#input-volume {
   transform: translateY(-9px);
   -webkit-appearance: none;
   height: 2px;
@@ -207,7 +222,7 @@ input#volume {
   border-radius: 50%;
   cursor: pointer;
 }
-input#volume::-webkit-slider-thumb {
+#input-volume::-webkit-slider-thumb {
   -webkit-appearance: none;
   width: 22px;
   height: 22px;
@@ -288,7 +303,7 @@ input#volume::-webkit-slider-thumb {
   background-color: #fafafa;
   /* -webkit-transition: 0.5s; */
   /* transition: 0.5s; */
-  transition: 0.4s cubic-bezier(0.18, 0.89, 0.35, 1.15) all;
+  transition: 0.4s ease all, left 0.4s cubic-bezier(0.18, 0.89, 0.35, 1.15);
 }
 .switch-btn:active:before {
   width: 40px;
@@ -330,9 +345,6 @@ input#volume::-webkit-slider-thumb {
 }
 
 .tracks-container {
-  /* display: flex;
-  flex-direction: column;
-  justify-content: space-between; */
   opacity: 0;
   position: absolute;
   top: 0px;
