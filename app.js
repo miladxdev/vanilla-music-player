@@ -1,4 +1,4 @@
-const selectElem = (e) => document.querySelector(e);
+const element = (e) => document.querySelector(e);
 // DOM elements
 const coverImg = document.getElementById("cover");
 
@@ -34,10 +34,10 @@ let song = new Audio();
 song.volume = 0.5;
 
 // change volume
-const volumeIcon = selectElem("#volume-btn i");
-const inputVolume = selectElem("#input-volume");
+const volumeIcon = element("#volume-btn i");
+const inputVolume = element("#input-volume");
 inputVolume.addEventListener("input", () => {
-  if (!selectElem("#toggle-mute").checked) {
+  if (!element("#toggle-mute").checked) {
     song.volume = inputVolume.value / 100;
   }
 
@@ -66,7 +66,13 @@ const nowPlayingHighlight = () => {
   // SHOW border for now playing song when click on menu
   const trackLists = document.querySelectorAll(".track-list");
   for (let i = 0; i < trackLists.length; i++) {
-    trackLists[i].style.boxShadow = "0 0  0 2px #00000008";
+    trackLists[i].style.boxShadow = "0 0 0 2px #00000008";
+    trackLists[i].addEventListener("click", () => {
+      nowPlaying = playList[i];
+      track = i;
+      isPlaying = false;
+      playSong();
+    });
   }
   trackLists[track].style.boxShadow = "0 0 0 2px #5a86bf79";
 };
@@ -77,16 +83,16 @@ const playSong = () => {
     song.src = nowPlaying.src;
     currentSrc = nowPlaying.src;
 
-    selectElem("#cover").classList.remove("effect");
-    void selectElem("#cover").offsetWidth;
-    selectElem("#cover").classList.add("effect");
+    element("#cover").classList.remove("effect");
+    void element("#cover").offsetWidth;
+    element("#cover").classList.add("effect");
   }
 
   nowPlayingHighlight();
 
   if (!isPlaying) {
     // update music info
-    selectElem("#cover").src = nowPlaying.cover;
+    element("#cover").src = nowPlaying.cover;
     title.innerHTML = nowPlaying.title;
     artist.innerHTML = nowPlaying.artist;
     playIcon.className = "fa fa-pause";
@@ -150,7 +156,7 @@ slider.addEventListener("mouseup", () => (touch = false));
 
 // ---- Song events
 song.addEventListener("timeupdate", () => {
-  selectElem("#toggle-mute").checked ? (song.volume = 0) : (song.volume = inputVolume.value / 100);
+  element("#toggle-mute").checked ? (song.volume = 0) : (song.volume = inputVolume.value / 100);
 
   if (!touch) {
     // if user not clicking on slider, update song time
@@ -165,15 +171,23 @@ song.addEventListener("timeupdate", () => {
 
 song.addEventListener("ended", () => {
   track++;
-  if (track > playList.length - 1) track = 0;
-  nowPlaying = playList[track];
   isPlaying = false;
+  if (element("#repeat-toggle").checked) {
+    if (track > playList.length - 1) track = 0;
+  } else {
+    if (track > playList.length - 1) {
+      track = playList.length - 1;
+      isPlaying = true;
+    }
+  }
+
+  nowPlaying = playList[track];
   playSong();
 });
 
 // --- Buttons events
 const menuBtn = document.getElementById("menu-btn");
-const trackContainer = selectElem(".tracks-container");
+const trackContainer = element(".tracks-container");
 trackContainer.style.bottom = "101%"; // fix working for first time
 
 menuBtn.addEventListener("click", (e) => {
@@ -190,9 +204,9 @@ menuBtn.addEventListener("click", (e) => {
 });
 
 // toggle settings
-let settings_elem = selectElem(".settings-container");
+let settings_elem = element(".settings-container");
 
-selectElem("#settings-btn").addEventListener("click", (e) => {
+element("#settings-btn").addEventListener("click", (e) => {
   if (settings_elem.style.height == "380px") {
     settings_elem.style.opacity = "0";
     settings_elem.style.height = "0";
@@ -211,7 +225,7 @@ document.body.addEventListener("keydown", (event) => {
 });
 
 // get user music
-const inputAudio = selectElem("#file");
+const inputAudio = element("#file");
 inputAudio.addEventListener("change", () => {
   var path = window.URL.createObjectURL(inputAudio.files[0]);
 
@@ -240,12 +254,12 @@ function createTrackNode() {
   const text = document.createTextNode(inputAudio.files[0].name);
   div.appendChild(text);
 
-  const traksContainer = selectElem(".tracks-container");
+  const traksContainer = element(".tracks-container");
   traksContainer.appendChild(div);
 }
 
 // volToggle Switch
-selectElem("#toggle-mute").addEventListener("change", function () {
+element("#toggle-mute").addEventListener("change", function () {
   if (this.checked) {
     volumeIcon.style.color = "lightcoral";
     volumeIcon.className = "fas fa-volume-mute";

@@ -390,6 +390,7 @@ input#slider::-webkit-slider-thumb:hover {
   background: #f0f0f0;
   border-radius: 5px;
   transition: box-shadow 0.5s;
+  font-size: 14px;
   overflow: hidden;
   cursor: pointer;
 }
@@ -399,7 +400,7 @@ input#slider::-webkit-slider-thumb:hover {
 .track-list img {
   display: block;
   float: left;
-  width: 50px;
+  width: 55px;
   padding-right: 10px;
   opacity: 0.8;
 }
@@ -427,7 +428,10 @@ input.file {
   color: #fff;
   font-weight: bold;
   cursor: pointer;
-  transition: transform 0.2s ease-out;
+  transition: 0.1s ease-out;
+}
+.file-container label:hover {
+  transform: scale(1.1);
 }
 
 /* 
