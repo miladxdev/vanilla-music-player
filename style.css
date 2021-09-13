@@ -6,15 +6,9 @@
   padding: 0;
 }
 
-[data-theme="dark"] {
-  --bg-body: #333;
-  --bg-component: #222;
-  --color-primary: white;
-}
-
 body {
   height: 100vh;
-  background: linear-gradient(to bottom right, hsl(214, 44%, 89%), hsl(224, 44%, 89%));
+  background: linear-gradient(to bottom right, hsl(214, 44%, 89%), hsl(244, 44%, 89%));
   font-family: "@Microsoft Yahei Ui Light";
   user-select: none;
   display: flex;
@@ -38,7 +32,7 @@ body {
     -8px 0 20px -10px hsl(0, 0%, 75%) inset; */
   /* prettier-ignore */
   box-shadow: 
-      0px 0px 30px -8px hsl(218, 14%, 67%),
+      0px 0px 30px -8px hsl(218, 14%, 77%),
       10px 0 20px -10px hsl(0, 0%, 80%) inset,
       -10px 0 20px -10px hsl(0, 0%, 80%) inset;
 

@@ -1,18 +1,8 @@
 const element = (e) => document.querySelector(e);
 // DOM elements
-const coverImg = document.getElementById("cover");
-
 const title = document.getElementById("title");
-const artist = document.getElementById("artist");
-
 const slider = document.getElementById("slider");
-const timeLeft = document.getElementById("time-left");
-const timeRemain = document.getElementById("time-remain");
-
-const playBtn = document.getElementById("play");
 const playIcon = document.getElementById("play-icon");
-const nextBtn = document.getElementById("next");
-const backBtn = document.getElementById("back");
 
 // variables
 let isPlaying = false;
@@ -94,7 +84,7 @@ const playSong = () => {
     // update music info
     element("#cover").src = nowPlaying.cover;
     title.innerHTML = nowPlaying.title;
-    artist.innerHTML = nowPlaying.artist;
+    element("#artist").innerHTML = nowPlaying.artist;
     playIcon.className = "fa fa-pause";
     playIcon.style.transform = "translateX(0%)";
     song.play();
@@ -108,25 +98,27 @@ const playSong = () => {
 };
 
 // Control Buttons
-playBtn.addEventListener("click", playSong);
+element("#play").onclick = () => {
+  playSong();
+};
 
-nextBtn.addEventListener("click", () => {
+element("#next").onclick = () => {
   track++;
   if (track > playList.length - 1) track = 0;
 
   nowPlaying = playList[track];
   isPlaying = false;
   playSong();
-});
+};
 
-backBtn.addEventListener("click", () => {
+element("#back").onclick = () => {
   track--;
   if (track < 0) track = playList.length - 1;
 
   nowPlaying = playList[track];
   isPlaying = false;
   playSong();
-});
+};
 
 // Range slider events ---
 slider.addEventListener("change", () => {
@@ -161,8 +153,8 @@ song.addEventListener("timeupdate", () => {
   if (!touch) {
     // if user not clicking on slider, update song time
     slider.value = song.currentTime;
-    timeLeft.innerHTML = song.currentTime ? secondsToMinutes(song.currentTime) : "00:00";
-    timeRemain.innerHTML = song.currentTime ? secondsToMinutes(song.duration - song.currentTime) : "00:00";
+    element("#time-left").innerHTML = song.currentTime ? secondsToMinutes(song.currentTime) : "00:00";
+    element("#time-remain").innerHTML = song.currentTime ? secondsToMinutes(song.duration - song.currentTime) : "00:00";
     // update sider background
     let x = (slider.value / slider.max) * 100;
     slider.style.background = `linear-gradient(to right, hsl(214, 45%, 80%) ${x}%, hsl(214, 44%, 90%) 0%)`;
