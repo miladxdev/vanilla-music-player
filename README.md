@@ -9,7 +9,7 @@
 <br />
 <p align="center">
   <a href="https://github.com/miladxdev/vanilla-music-player">
-    <img src="img/logo.png" alt="Logo" width="80" height="80">
+    <img src="img/logo.png" alt="Logo" width="96" height="96">
   </a>
 
   <h3 align="center">Vanilla Music Player</h3>
@@ -29,7 +29,7 @@
 </p>
 
 <!-- TABLE OF CONTENTS -->
-<details open="open">
+<details>
   <summary>Table of Contents</summary>
   <ol>
     <li>
@@ -58,19 +58,23 @@
 
 ## About The Project
 
+`screenshot`
+
 ![Product Name Screen Shot][product-screenshot]
+
+## LIVE DEMO ☝
 
 ### Built With
 
 This project built with
 
-- HTML
-- CSS
-- JavaScript
+- `HTML`
+- `CSS`
+- `JavaScript`
+
+This project is a simple music player. You can listen to your default musics or add your local music files. 🎵
 
 <!-- GETTING STARTED -->
-
-## Getting Started
 
 ### Installation
 
@@ -81,12 +85,6 @@ This project built with
 2. Enjoy
 
 <!-- USAGE EXAMPLES -->
-
-## Usage
-
-<!-- Use this space to show useful examples of how a project can be used. Additional screenshots, code examples and demos work well in this space. You may also link to more resources.
-
-_For more examples, please refer to the [Documentation](https://example.com)_ -->
 
 <!-- ROADMAP -->
 
@@ -116,9 +114,9 @@ Distributed under the MIT License. See `LICENSE` for more information.
 
 ## Contact
 
-Your Name - [@Milad](https://twitter.com/) - email@example.com
+Email: miladxgh@outlook.com
 
-Project Link: [Vanilla Music Player](https://github.com/miladxdev/vanilla-music-player)
+Project Link: [github.com/miladxdev/vanilla-music-player](https://github.com/miladxdev/vanilla-music-player)
 
 <!-- ACKNOWLEDGEMENTS -->
 
