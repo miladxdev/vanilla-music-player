@@ -20,7 +20,7 @@
     <a href="#"><strong>Explore the docs »</strong></a>
     <br />
     <br />
-    <a href="#">View Demo</a>
+    <a href="https://miladxdev.github.io/vanilla-music-player/">View Demo</a>
     ·
     <a href="#">Report Bug</a>
     ·
@@ -62,7 +62,7 @@
 
 ![Product Name Screen Shot][product-screenshot]
 
-## LIVE DEMO ☝
+## [LIVE DEMO](https://miladxdev.github.io/vanilla-music-player/) ☝
 
 ### Built With
 
