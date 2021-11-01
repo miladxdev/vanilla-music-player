@@ -8,8 +8,9 @@
 
 body {
   height: 100vh;
-  background: linear-gradient(to bottom right, hsl(214, 44%, 89%), hsl(244, 44%, 89%));
-  font-family: "@Microsoft Yahei Ui Light";
+  background-color: #8ec5fc;
+  background-image: linear-gradient(62deg, #8ec5fc 0%, #e0c3fc 100%);
+  font-family: "@Microsoft Yahei Ui Light", sans-serif;
   user-select: none;
   display: flex;
   justify-content: center;
