@@ -52,7 +52,7 @@ song.onloadeddata = () => {
 };
 
 // functions
-const nowPlayingHighlight = () => {
+const nowPlayingBorder = () => {
   // SHOW border for now playing song when click on menu
   const trackLists = document.querySelectorAll(".track-list");
   for (let i = 0; i < trackLists.length; i++) {
@@ -78,7 +78,7 @@ const playSong = () => {
     element("#cover").classList.add("effect");
   }
 
-  nowPlayingHighlight();
+  nowPlayingBorder();
 
   if (!isPlaying) {
     // update music info
@@ -126,7 +126,7 @@ slider.addEventListener("change", () => {
   // update slider background
   setInterval(() => {
     let x = (slider.value / slider.max) * 100;
-    slider.style.background = `linear-gradient(to right, hsl(214, 45%, 80%) ${x}%, hsl(214, 44%, 90%) 0%)`;
+    slider.style.backgroundImage = `linear-gradient(to right, hsl(214, 45%, 80%) ${x}%, hsl(214, 44%, 90%) 0%)`;
   }, 10);
 });
 
@@ -217,12 +217,12 @@ document.body.addEventListener("keydown", (event) => {
 });
 
 // get user music
-const inputAudio = element("#file");
-inputAudio.addEventListener("change", () => {
-  var path = window.URL.createObjectURL(inputAudio.files[0]);
+const inputFile = element("#file");
+inputFile.addEventListener("change", () => {
+  var path = window.URL.createObjectURL(inputFile.files[0]);
 
   let userMusic = {
-    title: inputAudio.files[0].name,
+    title: inputFile.files[0].name,
     artist: "unknown",
     src: path,
     cover: "img/cover/default.png",
@@ -243,14 +243,14 @@ function createTrackNode() {
   div.appendChild(img);
 
   document.createElement("p");
-  const text = document.createTextNode(inputAudio.files[0].name);
+  const text = document.createTextNode(inputFile.files[0].name);
   div.appendChild(text);
 
   const traksContainer = element(".tracks-container");
   traksContainer.appendChild(div);
 }
 
-// volToggle Switch
+// volume Toggle Switch
 element("#toggle-mute").addEventListener("change", function () {
   if (this.checked) {
     volumeIcon.style.color = "lightcoral";
@@ -264,6 +264,23 @@ element("#toggle-mute").addEventListener("change", function () {
   }
 });
 
+var audio = song;
+
+function loop() {
+  var buffered = audio.buffered;
+  var loaded;
+  var played;
+
+  if (buffered.length) {
+    loaded = (100 * buffered.end(0)) / audio.duration;
+    played = (100 * audio.currentTime) / audio.duration;
+    console.log(loaded.toFixed(2), played.toFixed(2));
+  }
+
+  setTimeout(loop, 500);
+}
+
+loop();
 // instagram: web.script
 // github: github.com/miladxdev
 // © 2021 Milad Gharibi. All rights reserved
