@@ -1,4 +1,5 @@
 const element = (e) => document.querySelector(e);
+
 // DOM elements
 const title = document.getElementById("title");
 const slider = document.getElementById("slider");
@@ -48,7 +49,6 @@ let currentSrc = nowPlaying.src;
 song.onloadeddata = () => {
   duration = song.duration;
   slider.max = duration;
-  // console.log(duration);
 };
 
 // functions
@@ -123,11 +123,6 @@ element("#back").onclick = () => {
 // Range slider events ---
 slider.addEventListener("change", () => {
   song.currentTime = slider.value;
-  // update slider background
-  setInterval(() => {
-    let x = (slider.value / slider.max) * 100;
-    slider.style.backgroundImage = `linear-gradient(to right, hsl(214, 45%, 80%) ${x}%, hsl(214, 44%, 90%) 0%)`;
-  }, 10);
 });
 
 const secondsToMinutes = (sec) => {
@@ -155,9 +150,6 @@ song.addEventListener("timeupdate", () => {
     slider.value = song.currentTime;
     element("#time-left").innerHTML = song.currentTime ? secondsToMinutes(song.currentTime) : "00:00";
     element("#time-remain").innerHTML = song.currentTime ? secondsToMinutes(song.duration - song.currentTime) : "00:00";
-    // update sider background
-    let x = (slider.value / slider.max) * 100;
-    slider.style.background = `linear-gradient(to right, hsl(214, 45%, 80%) ${x}%, hsl(214, 44%, 90%) 0%)`;
   }
 });
 
@@ -264,23 +256,28 @@ element("#toggle-mute").addEventListener("change", function () {
   }
 });
 
-var audio = song;
+// show audio buffered progress and time progress
+function bufferedProgress() {
+  window.onload = () => {
+    song.addEventListener("timeupdate", function () {
+      let duration = this.duration;
+      element("#progress-amount").style.width = (this.currentTime / duration) * 100 + "%";
 
-function loop() {
-  var buffered = audio.buffered;
-  var loaded;
-  var played;
-
-  if (buffered.length) {
-    loaded = (100 * buffered.end(0)) / audio.duration;
-    played = (100 * audio.currentTime) / audio.duration;
-    console.log(loaded.toFixed(2), played.toFixed(2));
-  }
-
-  setTimeout(loop, 500);
+      if (duration > 0) {
+        for (let i = 0; i < this.buffered.length; i++) {
+          if (this.buffered.start(this.buffered.length - 1) < this.currentTime) {
+            let width = (this.buffered.end(this.buffered.length - 1) / duration) * 100;
+            element("#buffered-amount").style.width = width + "%";
+            break;
+          }
+        }
+      }
+    });
+  };
 }
 
-loop();
+bufferedProgress(); // display buffered audio
+
 // instagram: web.script
 // github: github.com/miladxdev
 // © 2021 Milad Gharibi. All rights reserved

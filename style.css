@@ -112,25 +112,75 @@ small#artist {
   color: darkkhaki;
 }
 
+.slider-container {
+  position: relative;
+}
+
+.buffered {
+  position: relative;
+  border-radius: 50%;
+  margin-bottom: 8px;
+  overflow: hidden;
+  width: 100%;
+  height: 6px;
+  background: hsl(214, 44%, 90%);
+}
+
+#progress-amount {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  display: block;
+  width: 0px;
+  height: 100%;
+  background: hsl(214, 44%, 75%);
+  z-index: 0;
+}
+#buffered-amount {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  display: block;
+  width: 0px;
+  height: 100%;
+  border-right: 1px solid hsl(234, 44%, 70%);
+  background: hsl(234, 44%, 82%);
+  background: linear-gradient(to right, hsl(234, 44%, 87%), hsl(234, 44%, 90%));
+  background-size: 200%;
+  animation: buffering 2s infinite ease-out;
+}
+
+/* @keyframes buffering {
+  from {
+    background-position-x: 100%;
+  }
+  to {
+    background-position-x: -100%;
+  }
+} */
+
 input#slider {
   -webkit-appearance: none;
   width: 100%;
+  position: absolute;
+  left: 0;
+  top: 0;
   height: 6px;
   outline: none;
   border-radius: 50%;
-  background: hsl(214, 44%, 90%);
+  background: transparent;
   transition: 0.2s;
   cursor: pointer;
 }
-input#slider:hover {
-  background: hsl(214, 44%, 90%);
-}
+
 input#slider::-webkit-slider-thumb {
   -webkit-appearance: none;
   width: 14px;
   height: 14px;
   border-radius: 50%;
-  background: hsl(214, 44%, 80%);
+  background: hsl(214, 44%, 70%);
   transition: 0.1s;
   cursor: grab;
 }
