@@ -15,16 +15,16 @@
   <h3 align="center">Vanilla Music Player</h3>
 
   <p align="center">
-    Play and Enjoy with vanilla Music Player
+    Listen to your favorite music with vanilla music player
     <br />
-    <a href="#"><strong>Explore the docs »</strong></a>
+    <a href="https://miladxdev.github.io/vanilla-music-player/"><strong>Live preview »</strong></a>
     <br />
     <br />
-    <a href="https://miladxdev.github.io/vanilla-music-player/">View Demo</a>
+    <a href="https://miladxdev.github.io/vanilla-music-player/">Live Demo</a>
     ·
-    <a href="#">Report Bug</a>
+    <a href="https://github.com/miladxdev/vanilla-music-player/issues">Report Bug</a>
     ·
-    <a href="#">Request Feature</a>
+    <a href="https://github.com/miladxdev/vanilla-music-player/issues">Request Feature</a>
   </p>
 </p>
 
@@ -36,7 +36,7 @@
 
 ## About the Project
 
-This project is a simple music player. You can listen to app default musics or add your local music files. 🎵
+This project is a singel page music player application. You can listen to the app default tracks or add your local musics 🎵
 
 ### Built With
 
