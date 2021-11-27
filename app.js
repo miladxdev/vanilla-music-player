@@ -212,17 +212,36 @@ document.body.addEventListener("keydown", (event) => {
 // get user music
 const inputFile = element("#file");
 inputFile.addEventListener("change", () => {
-  var path = window.URL.createObjectURL(inputFile.files[0]);
-  let userMusic = {
-    title: inputFile.files[0].name,
-    artist: "unknown",
-    src: path,
-    cover: "img/cover/default.png",
-  };
+  // get media metadata
+  let jsmediatags = window.jsmediatags;
 
-  playList = [...playList, userMusic];
+  jsmediatags.read(inputFile.files[0], {
+    onSuccess: function (tag) {
+      let file = inputFile.files[0];
+      let path = window.URL.createObjectURL(file);
 
-  createTrackNode("img/cover/default.png", userMusic.title);
+      const { data, format } = tag.tags.picture;
+      let base64String = "";
+      for (let i = 0; i < data.length; i++) {
+        base64String += String.fromCharCode(data[i]);
+      }
+      const image = `data:${format};base64,${window.btoa(base64String)}`;
+
+      let userMusic = {
+        title: tag.tags.title,
+        artist: tag.tags.artist,
+        src: path,
+        cover: image,
+      };
+
+      playList = [...playList, userMusic];
+
+      createTrackNode(image, userMusic.title);
+    },
+    onError: function (error) {
+      console.log(":(", error.type, error.info);
+    },
+  });
 });
 
 // creates a track component in tracks section
@@ -288,4 +307,4 @@ bufferedProgress(); // display buffered audio
 
 // instagram: web.script
 // github: github.com/miladxdev
-// © 2021 Milad Gharibi. All rights reserved
+// © 2021 Milad Gharibi
