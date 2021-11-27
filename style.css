@@ -8,8 +8,7 @@
 
 body {
   height: 100vh;
-  /* background-color: #8ec5fc; */
-  background-image: linear-gradient(62deg, rgba(142, 197, 252, 0.4) 0%, rgba(224, 195, 252, 0.4) 100%);
+  background-image: linear-gradient(62deg, hsla(210, 70%, 77%, 0.5) 0%, hsla(292, 70%, 88%, 0.5) 100%);
   font-family: "@Microsoft Yahei Ui Light", sans-serif;
   user-select: none;
   display: flex;
@@ -24,18 +23,13 @@ body {
   justify-content: space-between;
   width: 320px;
   height: 610px;
-  padding: 12px;
+  padding: 16px;
   background: #fafafa;
   /* prettier-ignore */
-  /* box-shadow: 
-    0px 0px 30px -8px hsl(218, 14%, 67%),
-    8px 0 20px -10px hsl(0, 0%, 75%) inset,
-    -8px 0 20px -10px hsl(0, 0%, 75%) inset; */
-  /* prettier-ignore */
   box-shadow: 
-      0px 0px 30px -8px hsl(218, 14%, 77%),
-      10px 0 20px -10px hsl(0, 0%, 80%) inset,
-      -10px 0 20px -10px hsl(0, 0%, 80%) inset;
+    0px 0px 50px -8px hsl(218, 14%, 70%),
+    8px 0 20px -10px hsl(0, 0%, 75%) inset,
+    -8px 0 20px -10px hsl(0, 0%, 75%) inset;
 
   font-size: 26px;
   text-align: center;
@@ -84,9 +78,6 @@ body {
   cursor: pointer;
 }
 .cover-container {
-  position: relative;
-  border-radius: 20px;
-  /* overflow: hidden; */
   z-index: 1;
 }
 
@@ -149,7 +140,7 @@ small#artist {
   background: hsl(234, 44%, 82%);
   background: linear-gradient(to right, hsl(234, 44%, 87%), hsl(234, 44%, 90%));
   background-size: 200%;
-  animation: buffering 2s infinite ease-out;
+  /* animation: buffering 2s infinite ease-out; */
 }
 
 /* @keyframes buffering {
@@ -210,13 +201,12 @@ input#slider::-webkit-slider-thumb:hover {
   width: 76px;
   height: 76px;
   border-radius: 50px;
-  border: 1px solid hsl(214, 44%, 85%);
+  border: 2px solid hsl(224, 44%, 87%);
   background: hsl(214, 44%, 90%);
   cursor: pointer;
-  /* transition: .3s; */
 }
 .button:hover {
-  background: hsl(214, 44%, 80%);
+  background: hsl(224, 44%, 87%);
 }
 .button:active {
   -webkit-transform: scale(0.97);
@@ -229,14 +219,14 @@ input#slider::-webkit-slider-thumb:hover {
 }
 
 .button#back i {
-  transform: translateX(-15%);
+  transform: translateX(-14%);
 }
 
 .button#play i {
   transform: translateX(10%);
 }
 .button#next i {
-  transform: translateX(15%);
+  transform: translateX(14%);
 }
 
 .volume-slider {
@@ -248,7 +238,7 @@ input#slider::-webkit-slider-thumb:hover {
   transform: translateY(10px);
   width: 50%;
   background: hsl(0, 0%, 98%);
-  box-shadow: 0px 0px 4px 2px rgba(0, 0, 0, 0.1);
+  border: 2px solid hsl(214, 40%, 87%);
   border-radius: 40px;
   transition: 0.3s;
 }
@@ -299,18 +289,18 @@ input#slider::-webkit-slider-thumb:hover {
 }
 
 .effect {
-  animation: fade 0.5s ease-in-out;
+  animation: fade 0.4s ease-in-out;
 }
 
 @keyframes fade {
   0% {
-    transform: scale(1);
+    transform: rotateX(10deg);
   }
   50% {
-    transform: scale(1.01);
+    /* transform: scale(1.02); */
   }
   100% {
-    transform: scale(1);
+    transform: rotateX(0deg);
   }
 }
 
@@ -346,8 +336,6 @@ input#slider::-webkit-slider-thumb:hover {
   left: 4px;
   bottom: 4px;
   background-color: #fafafa;
-  /* -webkit-transition: 0.5s; */
-  /* transition: 0.5s; */
   transition: 0.4s ease all, left 0.4s cubic-bezier(0.18, 0.89, 0.35, 1.15);
 }
 .switch-btn:active:before {
@@ -395,19 +383,21 @@ input#slider::-webkit-slider-thumb:hover {
   top: 0px;
   left: 110%;
   overflow-y: scroll;
-  overflow-x: hidden;
   width: 250px;
   height: 0px;
   padding: 14px;
   border-radius: 20px;
   background-color: #fafafa;
+  color: #151416;
+  font-weight: 500;
   font-size: 1rem;
   text-align: left;
   transition: 0.3s;
 }
 
 .tracks-container::-webkit-scrollbar {
-  width: 10px;
+  position: absolute;
+  width: 8px;
 }
 
 .tracks-container::-webkit-scrollbar-track {
@@ -430,9 +420,10 @@ input#slider::-webkit-slider-thumb:hover {
 .track-list {
   display: flex;
   align-items: center;
+  justify-content: space-between;
   padding-right: 10px;
-  margin-top: 20px;
-  background: #f0f0f0;
+  margin-top: 14px;
+  background: hsl(250, 15%, 95%);
   border-radius: 5px;
   transition: box-shadow 0.5s;
   font-size: 14px;
@@ -440,17 +431,22 @@ input#slider::-webkit-slider-thumb:hover {
   cursor: pointer;
 }
 .track-list:hover {
-  background: #e4e4e4;
+  background: hsl(250, 15%, 92%);
+}
+.track-list:active {
+  transform: scale(0.98);
 }
 .track-list img {
   display: block;
-  float: left;
-  width: 55px;
+  width: 50px;
   padding-right: 10px;
   opacity: 0.8;
 }
-.track-list small {
-  display: block;
+.track-list p {
+  margin-right: auto;
+}
+.track-list i {
+  opacity: 0.5;
 }
 
 input.file {
@@ -466,21 +462,20 @@ input.file {
   width: 30px;
   height: 30px;
   border-radius: 50%;
-  background: linear-gradient(40deg, #be6eff, #7873f5);
+  background: linear-gradient(40deg, hsl(273, 90%, 72%), hsl(242, 77%, 71%));
+  background-size: 200% 100%;
+  background-position-x: 0%;
   display: flex;
   align-items: center;
   justify-content: center;
   color: #fff;
   font-weight: bold;
   cursor: pointer;
-  transition: 0.1s ease-out;
+  transition: 0.2s ease;
 }
 .file-container label:hover {
-  transform: scale(1.1);
+  background-position-x: 100%;
 }
-
-/* 
-  instagram: web.script
-  github: github.com/miladxdev
-  © 2021 Milad Gharibi. All rights reserved 
-*/
+.file-container label:active {
+  transform: scale(0.98);
+}
