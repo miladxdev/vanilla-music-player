@@ -16,6 +16,7 @@ let playList = [
   { title: "In The End",      artist: "Fleurie",                    src: "music/In-The-End.mp3",      cover: "img/cover/In-The-End.jpg"       },
   { title: "Algorithm",       artist: "Muse",                       src: "music/Algorithm.mp3",       cover: "img/cover/Algorithm.jpg"        },
   { title: "Never Fade Away", artist: "Olga Jankowska",             src: "music/Never-Fade-Away.mp3", cover: "img/cover/Never-Fade-Away.jpg"  },
+  { title: "Death Stranding", artist: "CHVRCHES",                   src: "music/Death-Stranding.m4a", cover: "img/cover/time-fall.jpg"  },
 ];
 
 let track = 0;
@@ -52,11 +53,11 @@ song.onloadeddata = () => {
 };
 
 // functions
-const nowPlayingBorder = () => {
-  // SHOW border for now playing song when click on menu
+function nowPlayingBorder() {
+  // highlight current playing song in track menu
   const trackLists = document.querySelectorAll(".track-list");
   for (let i = 0; i < trackLists.length; i++) {
-    trackLists[i].style.boxShadow = "0 0 0 2px #00000008";
+    trackLists[i].style.outline = "none";
     trackLists[i].addEventListener("click", () => {
       nowPlaying = playList[i];
       track = i;
@@ -64,12 +65,12 @@ const nowPlayingBorder = () => {
       playSong();
     });
   }
-  trackLists[track].style.boxShadow = "0 0 0 2px #5a86bf79";
-};
+  trackLists[track].style.outline = "3px solid hsl(214, 44%, 80%)";
+}
 
 const playSong = () => {
   if (currentSrc != nowPlaying.src) {
-    // change song.src only if track has changed
+    // change song.src if only track has changed
     song.src = nowPlaying.src;
     currentSrc = nowPlaying.src;
 
@@ -212,7 +213,6 @@ document.body.addEventListener("keydown", (event) => {
 const inputFile = element("#file");
 inputFile.addEventListener("change", () => {
   var path = window.URL.createObjectURL(inputFile.files[0]);
-
   let userMusic = {
     title: inputFile.files[0].name,
     artist: "unknown",
@@ -222,25 +222,33 @@ inputFile.addEventListener("change", () => {
 
   playList = [...playList, userMusic];
 
-  createTrackNode();
+  createTrackNode("img/cover/default.png", userMusic.title);
 });
 
 // creates a track component in tracks section
-function createTrackNode() {
+function createTrackNode(cover, title) {
   const div = document.createElement("div");
   div.className = "track-list";
 
-  const img = document.createElement("img");
-  img.setAttribute("src", "img/cover/default.png");
+  let img = document.createElement("img");
+  img.setAttribute("src", cover);
   div.appendChild(img);
 
-  document.createElement("p");
-  const text = document.createTextNode(inputFile.files[0].name);
-  div.appendChild(text);
+  let p = document.createElement("p");
+  let text = document.createTextNode(title);
+  p.appendChild(text);
+  div.appendChild(p);
 
-  const traksContainer = element(".tracks-container");
-  traksContainer.appendChild(div);
+  let icon = "<i class='fas fa-ellipsis-h'></i>";
+  div.innerHTML += icon;
+
+  element(".tracks-container").appendChild(div);
 }
+
+// create track list component
+playList.forEach((track) => {
+  createTrackNode(track.cover, track.title);
+});
 
 // volume Toggle Switch
 element("#toggle-mute").addEventListener("change", function () {
