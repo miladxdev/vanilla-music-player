@@ -102,6 +102,10 @@ small#artist {
   font-size: 16px;
   color: darkkhaki;
 }
+small#album {
+  font-size: 12px;
+  color: lightslategrey;
+}
 
 .slider-container {
   position: relative;
@@ -442,8 +446,17 @@ input#slider::-webkit-slider-thumb:hover {
   padding-right: 10px;
   opacity: 0.8;
 }
-.track-list p {
+.track-list div {
   margin-right: auto;
+  /* -webkit-line-clamp: 1; */
+  text-overflow: ellipsis;
+
+  /* Needed to make it work */
+  overflow: hidden;
+  white-space: nowrap;
+}
+.track-list small {
+  color: lightslategrey;
 }
 .track-list i {
   opacity: 0.5;

@@ -12,12 +12,17 @@ let currentTime = 0;
 
 // prettier-ignore
 let playList = [
-  { title: "Time",            artist: "Alan Walker & Hans Zimmer",  src: "music/Time.m4a",            cover: "img/cover/Time.jpg"             },
-  { title: "In The End",      artist: "Fleurie",                    src: "music/In-The-End.mp3",      cover: "img/cover/In-The-End.jpg"       },
-  { title: "Algorithm",       artist: "Muse",                       src: "music/Algorithm.mp3",       cover: "img/cover/Algorithm.jpg"        },
-  { title: "Never Fade Away", artist: "Olga Jankowska",             src: "music/Never-Fade-Away.mp3", cover: "img/cover/Never-Fade-Away.jpg"  },
-  { title: "Death Stranding", artist: "CHVRCHES",                   src: "music/Death-Stranding.m4a", cover: "img/cover/time-fall.jpg"  },
+  { title: "Time",            artist: "Alan Walker & Hans Zimmer", album: "Time (Remix)",       src: "music/Time.m4a",            cover: "img/cover/Time.jpg"             },
+  { title: "In The End",      artist: "Fleurie",                   album: "In the end (Remix)", src: "music/In-The-End.mp3",      cover: "img/cover/In-The-End.jpg"       },
+  { title: "Algorithm",       artist: "Muse",                      album: "Simulation Theory",  src: "music/Algorithm.mp3",       cover: "img/cover/Algorithm.jpg"        },
+  { title: "Never Fade Away", artist: "Olga Jankowska",            album: "Cyberpunk 2077 OST", src: "music/Never-Fade-Away.mp3", cover: "img/cover/Never-Fade-Away.jpg"  },
+  { title: "Death Stranding", artist: "CHVRCHES",                  album: "Timefall OST",       src: "music/Death-Stranding.m4a", cover: "img/cover/time-fall.jpg"        },
 ];
+
+// create track list component
+playList.forEach((track) => {
+  createTrackNode(track);
+});
 
 let track = 0;
 let nowPlaying = playList[track];
@@ -47,7 +52,7 @@ inputVolume.addEventListener("input", () => {
 song.src = nowPlaying.src;
 let currentSrc = nowPlaying.src;
 
-song.onloadeddata = () => {
+song.onloadedmetadata = () => {
   duration = song.duration;
   slider.max = duration;
 };
@@ -73,7 +78,6 @@ const playSong = () => {
     // change song.src if only track has changed
     song.src = nowPlaying.src;
     currentSrc = nowPlaying.src;
-
     element("#cover").classList.remove("effect");
     void element("#cover").offsetWidth;
     element("#cover").classList.add("effect");
@@ -82,14 +86,15 @@ const playSong = () => {
   nowPlayingBorder();
 
   if (!isPlaying) {
+    song.play();
+    isPlaying = true;
     // update music info
     element("#cover").src = nowPlaying.cover;
     title.innerHTML = nowPlaying.title;
     element("#artist").innerHTML = nowPlaying.artist;
+
     playIcon.className = "fa fa-pause";
     playIcon.style.transform = "translateX(0%)";
-    song.play();
-    isPlaying = true;
   } else {
     song.pause();
     playIcon.className = "fa fa-play";
@@ -211,7 +216,8 @@ document.body.addEventListener("keydown", (event) => {
 
 // get user music
 const inputFile = element("#file");
-inputFile.addEventListener("change", () => {
+inputFile.addEventListener("change", function () {
+  console.log("changed");
   // get media metadata
   let jsmediatags = window.jsmediatags;
 
@@ -220,23 +226,24 @@ inputFile.addEventListener("change", () => {
       let file = inputFile.files[0];
       let path = window.URL.createObjectURL(file);
 
-      const { data, format } = tag.tags.picture;
+      let { data, format } = tag.tags.picture;
       let base64String = "";
       for (let i = 0; i < data.length; i++) {
         base64String += String.fromCharCode(data[i]);
       }
-      const image = `data:${format};base64,${window.btoa(base64String)}`;
+      let image = `data:${format};base64,${window.btoa(base64String)}`;
 
       let userMusic = {
         title: tag.tags.title,
         artist: tag.tags.artist,
+        album: tag.tags.album,
         src: path,
         cover: image,
       };
 
       playList = [...playList, userMusic];
-
-      createTrackNode(image, userMusic.title);
+      console.log(playList);
+      createTrackNode(userMusic);
     },
     onError: function (error) {
       console.log(":(", error.type, error.info);
@@ -245,29 +252,22 @@ inputFile.addEventListener("change", () => {
 });
 
 // creates a track component in tracks section
-function createTrackNode(cover, title) {
-  const div = document.createElement("div");
-  div.className = "track-list";
+function createTrackNode(metadata) {
+  const container = `
+    <div class="track-list">
+      <img src="${metadata.cover}">
 
-  let img = document.createElement("img");
-  img.setAttribute("src", cover);
-  div.appendChild(img);
+      <div>
+        <p>${metadata.title}</p>
+        <small class="track-meta">${metadata.artist} - ${metadata.album}</small>
+      </div>
 
-  let p = document.createElement("p");
-  let text = document.createTextNode(title);
-  p.appendChild(text);
-  div.appendChild(p);
+      <i class='fas fa-ellipsis-h'></i>
+    </div>
+  `;
 
-  let icon = "<i class='fas fa-ellipsis-h'></i>";
-  div.innerHTML += icon;
-
-  element(".tracks-container").appendChild(div);
+  element("#track-list-container").innerHTML += container;
 }
-
-// create track list component
-playList.forEach((track) => {
-  createTrackNode(track.cover, track.title);
-});
 
 // volume Toggle Switch
 element("#toggle-mute").addEventListener("change", function () {
