@@ -448,10 +448,7 @@ input#slider::-webkit-slider-thumb:hover {
 }
 .track-list div {
   margin-right: auto;
-  /* -webkit-line-clamp: 1; */
   text-overflow: ellipsis;
-
-  /* Needed to make it work */
   overflow: hidden;
   white-space: nowrap;
 }
