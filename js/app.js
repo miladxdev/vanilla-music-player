@@ -34,13 +34,16 @@ song.onloadedmetadata = () => {
 
 const playSong = () => {
   if (currentSrc != nowPlaying.src) {
-    // change song.src if only track has changed
+    // change song.src if track has changed
     song.src = nowPlaying.src;
     currentSrc = nowPlaying.src;
     element("#cover").classList.remove("effect");
     void element("#cover").offsetWidth;
     element("#cover").classList.add("effect");
   }
+
+  // update blur background
+  element("body").style.backgroundImage = `url(${nowPlaying.cover})`;
 
   nowPlayingBorder();
 
